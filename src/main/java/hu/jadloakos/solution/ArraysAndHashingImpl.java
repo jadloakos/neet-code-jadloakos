@@ -27,4 +27,17 @@ public class ArraysAndHashingImpl implements ArraysAndHashing {
     var match = t.chars().boxed().sorted().collect(Collectors.toList());
     return base.equals(match);
   }
+
+  @Override
+  public int[] twoSum(int[] nums, int target) {
+    for (int tail = 0; tail < nums.length - 1; tail++) {
+      for (int head = tail + 1; head < nums.length; head++) {
+        if (nums[tail] + nums[head] == target) {
+          return new int[] {tail, head};
+        }
+      }
+    }
+
+    throw new IllegalArgumentException("No indices where the two numbers add up to target!");
+  }
 }

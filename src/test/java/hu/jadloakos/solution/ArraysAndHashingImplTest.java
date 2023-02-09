@@ -4,6 +4,9 @@ import hu.jadloakos.problem.ArraysAndHashing;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -39,5 +42,16 @@ public class ArraysAndHashingImplTest {
     // Act & Assert
     assertFalse(arraysAndHashing.isAnagram(noAnagramBase, noAnagramMatch));
     assertTrue(arraysAndHashing.isAnagram(anagramBase, anagramMatch));
+  }
+
+  @Test
+  public void testTwoSum() {
+    // Arrange
+    var nums = new int[] {1, 2, 2, 4, 12, 11, 7, 3, 6};
+    var target = 10;
+
+    // Act & Assert
+    assertThat(
+        arraysAndHashing.twoSum(nums, target), anyOf(is(new int[] {3, 8}), is(new int[] {8, 3})));
   }
 }

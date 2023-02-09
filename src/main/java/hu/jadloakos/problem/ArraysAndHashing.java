@@ -23,4 +23,19 @@ public interface ArraysAndHashing {
    * @return true if t is an anagram of s, false otherwise
    */
   boolean isAnagram(String s, String t);
+
+  /**
+   * Given an array of integers nums and an integer target, return indices of the two numbers such
+   * that they add up to target.
+   *
+   * <p>You may assume that each input would have exactly one solution, and you may not use the same
+   * element twice.
+   *
+   * <p>You can return the answer in any order.
+   *
+   * @param nums array of integers
+   * @param target the required sum
+   * @return indicies of the two numbers
+   */
+  int[] twoSum(int[] nums, int target);
 }
