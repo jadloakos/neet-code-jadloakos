@@ -1,5 +1,7 @@
 package hu.jadloakos.problem;
 
+import java.util.List;
+
 /** Interface for arrays & hashing problems */
 public interface ArraysAndHashing {
 
@@ -38,4 +40,15 @@ public interface ArraysAndHashing {
    * @return indicies of the two numbers
    */
   int[] twoSum(int[] nums, int target);
+
+  /**
+   * Given an array of strings, group the anagrams together. You can return the answer in any order.
+   *
+   * <p>An Anagram is a word or phrase formed by rearranging the letters of a different word or
+   * phrase, typically using all the original letters exactly once.
+   *
+   * @param strs list of strings
+   * @return grouped anagrams
+   */
+  List<List<String>> groupAnagrams(String[] strs);
 }

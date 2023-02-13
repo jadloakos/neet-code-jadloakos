@@ -2,8 +2,11 @@ package hu.jadloakos.solution;
 
 import hu.jadloakos.problem.ArraysAndHashing;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ArraysAndHashingImpl implements ArraysAndHashing {
 
@@ -39,5 +42,21 @@ public class ArraysAndHashingImpl implements ArraysAndHashing {
     }
 
     throw new IllegalArgumentException("No indices where the two numbers add up to target!");
+  }
+
+  @Override
+  public List<List<String>> groupAnagrams(String[] strs) {
+    List<List<String>> groups = new ArrayList<>();
+
+    for (String str : strs) {
+      groups.stream()
+          .filter(group -> isAnagram(group.get(0), str))
+          .findAny()
+          .ifPresentOrElse(
+              group -> group.add(str),
+              () -> groups.add(Stream.of(str).collect(Collectors.toList())));
+    }
+
+    return groups;
   }
 }

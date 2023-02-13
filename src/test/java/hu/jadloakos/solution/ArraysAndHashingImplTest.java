@@ -4,11 +4,12 @@ import hu.jadloakos.problem.ArraysAndHashing;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /** Test class for {@link ArraysAndHashingImplTest} */
 public class ArraysAndHashingImplTest {
@@ -53,5 +54,22 @@ public class ArraysAndHashingImplTest {
     // Act & Assert
     assertThat(
         arraysAndHashing.twoSum(nums, target), anyOf(is(new int[] {3, 8}), is(new int[] {8, 3})));
+  }
+
+  @Test
+  public void testGroupAnagrams() {
+    // Arrange
+    var strs = new String[] {"asd", "dsa", "qwe"};
+
+    // Act
+    var result = arraysAndHashing.groupAnagrams(strs);
+
+    // Assert
+    var qweGroupIndex = result.get(0).size() == 1 ? 0 : 1;
+    var asdGroupIndex = qweGroupIndex == 0 ? 1 : 0;
+
+    assertEquals(result.get(qweGroupIndex), List.of("qwe"));
+    assertThat(
+        result.get(asdGroupIndex), anyOf(is(List.of("asd", "dsa")), is(List.of("dsa", "asd"))));
   }
 }
