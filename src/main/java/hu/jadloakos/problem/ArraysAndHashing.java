@@ -94,4 +94,22 @@ public interface ArraysAndHashing {
    * @return true if board is valid, false otherwise
    */
   boolean isValidSudoku(char[][] board);
+
+  /**
+   * Design an algorithm to encode a list of strings to a string. The encoded string is then sent
+   * over the network and is decoded back to the original list of strings.
+   *
+   * @param strs a list of strings
+   * @return encoded string.
+   */
+  String encode(List<String> strs);
+
+  /**
+   * Design an algorithm to encode a list of strings to a string. The encoded string is then sent
+   * over the network and is decoded back to the original list of strings.
+   *
+   * @param str a string
+   * @return decoded list of strings
+   */
+  List<String> decode(String str);
 }

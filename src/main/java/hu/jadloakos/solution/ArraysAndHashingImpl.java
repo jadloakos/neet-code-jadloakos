@@ -135,4 +135,48 @@ public class ArraysAndHashingImpl implements ArraysAndHashing {
 
     return true;
   }
+
+  @Override
+  public String encode(List<String> strs) {
+    var encoded = new StringBuilder();
+
+    for (String str : strs) {
+      encoded.append(str.length()).append('#').append(str);
+    }
+
+    return encoded.toString();
+  }
+
+  @Override
+  public List<String> decode(String str) {
+    var decoded = new ArrayList<String>();
+
+    var index = 0;
+    var characterCounter = 0;
+    var nextStr = new StringBuilder();
+    var nextStrLength = new StringBuilder();
+
+    while (index != str.length()) {
+      var charAtIndex = str.charAt(index);
+
+      if (characterCounter > 0) {
+        nextStr.append(charAtIndex);
+        characterCounter--;
+
+        if (characterCounter == 0) {
+          decoded.add(nextStr.toString());
+          nextStr.delete(0, nextStr.length());
+        }
+      } else if ('#' == charAtIndex) {
+        characterCounter = Integer.parseInt(nextStrLength.toString());
+        nextStrLength.delete(0, nextStrLength.length());
+      } else {
+        nextStrLength.append(charAtIndex);
+      }
+
+      index++;
+    }
+
+    return decoded;
+  }
 }

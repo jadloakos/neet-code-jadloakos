@@ -125,4 +125,15 @@ public class ArraysAndHashingImplTest {
     assertTrue(arraysAndHashing.isValidSudoku(validBoard));
     assertFalse(arraysAndHashing.isValidSudoku(invalidBoard));
   }
+
+  @Test
+  public void testEncodeDecode() {
+    // Arrange
+    var input = List.of("lint", "code", "love", "you");
+    var harderInput = List.of("we", "say", ":", "yes");
+
+    // Act & Assert
+    assertEquals(input, arraysAndHashing.decode(arraysAndHashing.encode(input)));
+    assertEquals(harderInput, arraysAndHashing.decode(arraysAndHashing.encode(harderInput)));
+  }
 }
