@@ -179,4 +179,31 @@ public class ArraysAndHashingImpl implements ArraysAndHashing {
 
     return decoded;
   }
+
+  @Override
+  public int longestConsecutive(int[] nums) {
+    if (nums.length < 2) {
+      return nums.length;
+    }
+
+    var orderedNums = Arrays.stream(nums).distinct().sorted().toArray();
+
+    var longest = 1;
+    var counter = 1;
+    var previous = orderedNums[0];
+
+    for (int i = 1; i < orderedNums.length; i++) {
+      var numAtIndex = orderedNums[i];
+      if (numAtIndex == previous + 1) {
+        counter++;
+        longest = Math.max(longest, counter);
+      } else {
+        counter = 1;
+      }
+
+      previous = numAtIndex;
+    }
+
+    return longest;
+  }
 }

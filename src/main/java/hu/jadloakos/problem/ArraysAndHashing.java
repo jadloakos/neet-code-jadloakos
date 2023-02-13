@@ -112,4 +112,15 @@ public interface ArraysAndHashing {
    * @return decoded list of strings
    */
   List<String> decode(String str);
+
+  /**
+   * Given an unsorted array of integers nums, return the length of the longest consecutive elements
+   * sequence.
+   *
+   * <p>You must write an algorithm that runs in O(n) time.
+   *
+   * @param nums unsorted array of numbers
+   * @return longest consecutive elements
+   */
+  int longestConsecutive(int[] nums);
 }

@@ -136,4 +136,15 @@ public class ArraysAndHashingImplTest {
     assertEquals(input, arraysAndHashing.decode(arraysAndHashing.encode(input)));
     assertEquals(harderInput, arraysAndHashing.decode(arraysAndHashing.encode(harderInput)));
   }
+
+  @Test
+  public void testLongestConsecutive() {
+    // Arrange
+    var inputOne = new int[] {100, 4, 200, 1, 3, 2};
+    var inputTwo = new int[] {0, 3, 7, 2, 5, 8, 4, 6, 0, 1};
+
+    // Act & Assert
+    assertEquals(4, arraysAndHashing.longestConsecutive(inputOne));
+    assertEquals(9, arraysAndHashing.longestConsecutive(inputTwo));
+  }
 }
