@@ -96,4 +96,43 @@ public class ArraysAndHashingImpl implements ArraysAndHashing {
 
     return productExceptSelf;
   }
+
+  @Override
+  public boolean isValidSudoku(char[][] board) {
+    Map<Integer, Set<Character>> rowValidators = new HashMap<>();
+    Map<Integer, Set<Character>> columnValidators = new HashMap<>();
+    Map<Integer, Set<Character>> subBoxValidators = new HashMap<>();
+
+    var subBoxSeparator = 3;
+    var subBoxIndexMultiplier = board.length;
+
+    for (int rowIndex = 0; rowIndex < board.length; rowIndex++) {
+      var row = board[rowIndex];
+      for (int columnIndex = 0; columnIndex < row.length; columnIndex++) {
+        var cell = row[columnIndex];
+        if ('.' == cell) {
+          continue;
+        }
+
+        var rowValidator = rowValidators.computeIfAbsent(rowIndex, key -> new HashSet<>());
+        if (!rowValidator.add(cell)) {
+          return false;
+        }
+
+        var columnValidator = columnValidators.computeIfAbsent(columnIndex, key -> new HashSet<>());
+        if (!columnValidator.add(cell)) {
+          return false;
+        }
+
+        var subBoxIndex =
+            rowIndex / subBoxSeparator + columnIndex / subBoxSeparator * subBoxIndexMultiplier;
+        var subBoxValidator = subBoxValidators.computeIfAbsent(subBoxIndex, key -> new HashSet<>());
+        if (!subBoxValidator.add(cell)) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  }
 }

@@ -92,4 +92,37 @@ public class ArraysAndHashingImplTest {
     // Act & Assert
     assertArrayEquals(new int[] {0, 0, 9, 0, 0}, arraysAndHashing.productExceptSelf(nums));
   }
+
+  @Test
+  public void testIsValidSudoku() {
+    // Arrange
+    var validBoard =
+        new char[][] {
+          new char[] {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+          new char[] {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+          new char[] {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+          new char[] {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+          new char[] {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+          new char[] {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+          new char[] {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+          new char[] {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+          new char[] {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
+        };
+    var invalidBoard =
+        new char[][] {
+          new char[] {'8', '3', '.', '.', '7', '.', '.', '.', '.'},
+          new char[] {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+          new char[] {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+          new char[] {'5', '.', '.', '.', '6', '.', '.', '.', '3'},
+          new char[] {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+          new char[] {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+          new char[] {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+          new char[] {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+          new char[] {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
+        };
+
+    // Act & Assert
+    assertTrue(arraysAndHashing.isValidSudoku(validBoard));
+    assertFalse(arraysAndHashing.isValidSudoku(invalidBoard));
+  }
 }
