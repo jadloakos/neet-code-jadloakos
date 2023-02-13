@@ -68,8 +68,28 @@ public class ArraysAndHashingImplTest {
     var qweGroupIndex = result.get(0).size() == 1 ? 0 : 1;
     var asdGroupIndex = qweGroupIndex == 0 ? 1 : 0;
 
-    assertEquals(result.get(qweGroupIndex), List.of("qwe"));
+    assertEquals(List.of("qwe"), result.get(qweGroupIndex));
     assertThat(
         result.get(asdGroupIndex), anyOf(is(List.of("asd", "dsa")), is(List.of("dsa", "asd"))));
+  }
+
+  @Test
+  public void testTopKFrequent() {
+    // Arrange
+    var nums = new int[] {1, 1, 1, 2, 2, 3};
+    var k = 2;
+
+    // Act & Assert
+    assertThat(
+        arraysAndHashing.topKFrequent(nums, k), anyOf(is(new int[] {1, 2}), is(new int[] {2, 1})));
+  }
+
+  @Test
+  public void testProductExceptSelf() {
+    // Arrange
+    var nums = new int[] {-1, 1, 0, -3, 3};
+
+    // Act & Assert
+    assertArrayEquals(new int[] {0, 0, 9, 0, 0}, arraysAndHashing.productExceptSelf(nums));
   }
 }

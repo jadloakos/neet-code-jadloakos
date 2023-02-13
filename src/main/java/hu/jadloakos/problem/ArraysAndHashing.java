@@ -51,4 +51,27 @@ public interface ArraysAndHashing {
    * @return grouped anagrams
    */
   List<List<String>> groupAnagrams(String[] strs);
+
+  /**
+   * Given an integer array nums and an integer k, return the k most frequent elements. You may
+   * return the answer in any order.
+   *
+   * @param nums array of numbers
+   * @param k required frequent elements
+   * @return the k most frequent element
+   */
+  int[] topKFrequent(int[] nums, int k);
+
+  /**
+   * Given an integer array nums, return an array answer such that answer[i] is equal to the product
+   * of all the elements of nums except nums[i].
+   *
+   * <p>The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+   *
+   * <p>You must write an algorithm that runs in O(n) time and without using the division operation.
+   *
+   * @param nums array of nums
+   * @return array of sums without num in current index
+   */
+  int[] productExceptSelf(int[] nums);
 }

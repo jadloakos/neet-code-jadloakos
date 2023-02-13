@@ -2,9 +2,7 @@ package hu.jadloakos.solution;
 
 import hu.jadloakos.problem.ArraysAndHashing;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -58,5 +56,44 @@ public class ArraysAndHashingImpl implements ArraysAndHashing {
     }
 
     return groups;
+  }
+
+  @Override
+  public int[] topKFrequent(int[] nums, int k) {
+    Map<Integer, Integer> counter = new HashMap<>();
+
+    for (int num : nums) {
+      var newValue = counter.computeIfPresent(num, (key, count) -> count++);
+      if (newValue == null) {
+        counter.put(num, 1);
+      }
+    }
+
+    var numsInOrder =
+        counter.entrySet().stream()
+            .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+            .map(Map.Entry::getKey)
+            .mapToInt(Integer::intValue)
+            .toArray();
+    return Arrays.copyOfRange(numsInOrder, 0, k);
+  }
+
+  @Override
+  public int[] productExceptSelf(int[] nums) {
+    var productExceptSelf = new int[nums.length];
+    var left = 1;
+    var right = 1;
+
+    for (int i = 0; i < nums.length; i++) {
+      productExceptSelf[i] = left;
+      left *= nums[i];
+    }
+
+    for (int i = nums.length - 1; i >= 0; i--) {
+      productExceptSelf[i] *= right;
+      right *= nums[i];
+    }
+
+    return productExceptSelf;
   }
 }
