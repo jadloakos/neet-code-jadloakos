@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/** Solutions for problems in {@link ArraysAndHashing}. */
 public class ArraysAndHashingImpl implements ArraysAndHashing {
 
   @Override
