@@ -4,8 +4,7 @@ import hu.jadloakos.problem.StackProblems;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /** Test class for {@link StackSolutions} */
 public class StackSolutionsTest {
@@ -28,5 +27,20 @@ public class StackSolutionsTest {
     assertTrue(stackSolutions.isValid(valid));
     assertTrue(stackSolutions.isValid(complexValid));
     assertFalse(stackSolutions.isValid(invalid));
+  }
+
+  @Test
+  public void testMinStack() {
+    // Arrange
+    var minStack = stackSolutions.getMinStack();
+
+    // Act & Assert
+    minStack.push(-2);
+    minStack.push(0);
+    minStack.push(-3);
+    assertEquals(-3, minStack.getMin());
+    minStack.pop();
+    assertEquals(0, minStack.top());
+    assertEquals(-2, minStack.getMin());
   }
 }

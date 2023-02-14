@@ -32,4 +32,37 @@ public class StackSolutions implements StackProblems {
 
     return unclosedOpenBrackets.empty();
   }
+
+  @Override
+  public MinStack getMinStack() {
+    return new MinStackSolution();
+  }
+
+  private static class MinStackSolution implements MinStack {
+
+    private final Stack<Integer> min = new Stack<>();
+    private final Stack<Integer> stack = new Stack<>();
+
+    @Override
+    public void push(int val) {
+      stack.push(val);
+      min.push(Math.min(val, min.empty() ? val : min.peek()));
+    }
+
+    @Override
+    public void pop() {
+      min.pop();
+      stack.pop();
+    }
+
+    @Override
+    public int top() {
+      return stack.peek();
+    }
+
+    @Override
+    public int getMin() {
+      return min.peek();
+    }
+  }
 }
