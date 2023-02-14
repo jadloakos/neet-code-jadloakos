@@ -1,7 +1,7 @@
 package hu.jadloakos.problem;
 
 /** Interface for stack problems */
-public interface Stack {
+public interface StackProblems {
 
   /**
    * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if

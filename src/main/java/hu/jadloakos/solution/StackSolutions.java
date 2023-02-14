@@ -1,18 +1,19 @@
 package hu.jadloakos.solution;
 
-import hu.jadloakos.problem.Stack;
+import hu.jadloakos.problem.StackProblems;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
-/** Solutions for problems in {@link Stack}. */
-public class StackImpl implements Stack {
+/** Solutions for problems in {@link StackProblems}. */
+public class StackSolutions implements StackProblems {
 
   @Override
   public boolean isValid(String s) {
     List<Character> openBrackets = Arrays.asList('(', '[', '{');
     List<Character> closeBrackets = Arrays.asList(')', ']', '}');
-    java.util.Stack<Character> unclosedOpenBrackets = new java.util.Stack<>();
+    Stack<Character> unclosedOpenBrackets = new Stack<>();
 
     for (char c : s.toCharArray()) {
       var closeIndex = closeBrackets.indexOf(c);

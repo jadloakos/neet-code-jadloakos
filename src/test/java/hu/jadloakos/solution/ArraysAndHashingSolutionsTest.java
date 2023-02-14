@@ -1,6 +1,6 @@
 package hu.jadloakos.solution;
 
-import hu.jadloakos.problem.ArraysAndHashing;
+import hu.jadloakos.problem.ArraysAndHashingProblems;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,14 +11,14 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
-/** Test class for {@link ArraysAndHashingImplTest} */
-public class ArraysAndHashingImplTest {
+/** Test class for {@link ArraysAndHashingSolutionsTest} */
+public class ArraysAndHashingSolutionsTest {
 
-  private ArraysAndHashing arraysAndHashing;
+  private ArraysAndHashingProblems arraysAndHashingSolutions;
 
   @BeforeEach
   public void setup() {
-    arraysAndHashing = new ArraysAndHashingImpl();
+    arraysAndHashingSolutions = new ArraysAndHashingSolutions();
   }
 
   @Test
@@ -28,8 +28,8 @@ public class ArraysAndHashingImplTest {
     var hasDuplicate = new int[] {1, 2, 3, 4, 5, 1, 2, 3, 4};
 
     // Act & Assert
-    assertFalse(arraysAndHashing.containsDuplicate(noDuplicate));
-    assertTrue(arraysAndHashing.containsDuplicate(hasDuplicate));
+    assertFalse(arraysAndHashingSolutions.containsDuplicate(noDuplicate));
+    assertTrue(arraysAndHashingSolutions.containsDuplicate(hasDuplicate));
   }
 
   @Test
@@ -41,8 +41,8 @@ public class ArraysAndHashingImplTest {
     var anagramMatch = "dsa dsa132%* ";
 
     // Act & Assert
-    assertFalse(arraysAndHashing.isAnagram(noAnagramBase, noAnagramMatch));
-    assertTrue(arraysAndHashing.isAnagram(anagramBase, anagramMatch));
+    assertFalse(arraysAndHashingSolutions.isAnagram(noAnagramBase, noAnagramMatch));
+    assertTrue(arraysAndHashingSolutions.isAnagram(anagramBase, anagramMatch));
   }
 
   @Test
@@ -53,7 +53,8 @@ public class ArraysAndHashingImplTest {
 
     // Act & Assert
     assertThat(
-        arraysAndHashing.twoSum(nums, target), anyOf(is(new int[] {3, 8}), is(new int[] {8, 3})));
+        arraysAndHashingSolutions.twoSum(nums, target),
+        anyOf(is(new int[] {3, 8}), is(new int[] {8, 3})));
   }
 
   @Test
@@ -62,7 +63,7 @@ public class ArraysAndHashingImplTest {
     var strs = new String[] {"asd", "dsa", "qwe"};
 
     // Act
-    var result = arraysAndHashing.groupAnagrams(strs);
+    var result = arraysAndHashingSolutions.groupAnagrams(strs);
 
     // Assert
     var qweGroupIndex = result.get(0).size() == 1 ? 0 : 1;
@@ -81,7 +82,8 @@ public class ArraysAndHashingImplTest {
 
     // Act & Assert
     assertThat(
-        arraysAndHashing.topKFrequent(nums, k), anyOf(is(new int[] {1, 2}), is(new int[] {2, 1})));
+        arraysAndHashingSolutions.topKFrequent(nums, k),
+        anyOf(is(new int[] {1, 2}), is(new int[] {2, 1})));
   }
 
   @Test
@@ -90,7 +92,7 @@ public class ArraysAndHashingImplTest {
     var nums = new int[] {-1, 1, 0, -3, 3};
 
     // Act & Assert
-    assertArrayEquals(new int[] {0, 0, 9, 0, 0}, arraysAndHashing.productExceptSelf(nums));
+    assertArrayEquals(new int[] {0, 0, 9, 0, 0}, arraysAndHashingSolutions.productExceptSelf(nums));
   }
 
   @Test
@@ -122,8 +124,8 @@ public class ArraysAndHashingImplTest {
         };
 
     // Act & Assert
-    assertTrue(arraysAndHashing.isValidSudoku(validBoard));
-    assertFalse(arraysAndHashing.isValidSudoku(invalidBoard));
+    assertTrue(arraysAndHashingSolutions.isValidSudoku(validBoard));
+    assertFalse(arraysAndHashingSolutions.isValidSudoku(invalidBoard));
   }
 
   @Test
@@ -133,8 +135,10 @@ public class ArraysAndHashingImplTest {
     var harderInput = List.of("we", "say", ":", "yes");
 
     // Act & Assert
-    assertEquals(input, arraysAndHashing.decode(arraysAndHashing.encode(input)));
-    assertEquals(harderInput, arraysAndHashing.decode(arraysAndHashing.encode(harderInput)));
+    assertEquals(input, arraysAndHashingSolutions.decode(arraysAndHashingSolutions.encode(input)));
+    assertEquals(
+        harderInput,
+        arraysAndHashingSolutions.decode(arraysAndHashingSolutions.encode(harderInput)));
   }
 
   @Test
@@ -144,7 +148,7 @@ public class ArraysAndHashingImplTest {
     var inputTwo = new int[] {0, 3, 7, 2, 5, 8, 4, 6, 0, 1};
 
     // Act & Assert
-    assertEquals(4, arraysAndHashing.longestConsecutive(inputOne));
-    assertEquals(9, arraysAndHashing.longestConsecutive(inputTwo));
+    assertEquals(4, arraysAndHashingSolutions.longestConsecutive(inputOne));
+    assertEquals(9, arraysAndHashingSolutions.longestConsecutive(inputTwo));
   }
 }

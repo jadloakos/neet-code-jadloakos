@@ -3,7 +3,7 @@ package hu.jadloakos.problem;
 import java.util.List;
 
 /** Interface for arrays & hashing problems */
-public interface ArraysAndHashing {
+public interface ArraysAndHashingProblems {
 
   /**
    * Given an integer array nums, return true if any value appears at least twice in the array, and

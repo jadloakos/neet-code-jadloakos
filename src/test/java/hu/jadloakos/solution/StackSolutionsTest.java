@@ -1,20 +1,20 @@
 package hu.jadloakos.solution;
 
-import hu.jadloakos.problem.Stack;
+import hu.jadloakos.problem.StackProblems;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/** Test class for {@link StackImpl} */
-public class StackImplTest {
+/** Test class for {@link StackSolutions} */
+public class StackSolutionsTest {
 
-  private Stack stack;
+  private StackProblems stackSolutions;
 
   @BeforeEach
   public void setup() {
-    stack = new StackImpl();
+    stackSolutions = new StackSolutions();
   }
 
   @Test
@@ -25,8 +25,8 @@ public class StackImplTest {
     var invalid = "(]";
 
     // Act & Assert
-    assertTrue(stack.isValid(valid));
-    assertTrue(stack.isValid(complexValid));
-    assertFalse(stack.isValid(invalid));
+    assertTrue(stackSolutions.isValid(valid));
+    assertTrue(stackSolutions.isValid(complexValid));
+    assertFalse(stackSolutions.isValid(invalid));
   }
 }

@@ -1,13 +1,13 @@
 package hu.jadloakos.solution;
 
-import hu.jadloakos.problem.ArraysAndHashing;
+import hu.jadloakos.problem.ArraysAndHashingProblems;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/** Solutions for problems in {@link ArraysAndHashing}. */
-public class ArraysAndHashingImpl implements ArraysAndHashing {
+/** Solutions for problems in {@link ArraysAndHashingProblems}. */
+public class ArraysAndHashingSolutions implements ArraysAndHashingProblems {
 
   @Override
   public boolean containsDuplicate(int[] nums) {
