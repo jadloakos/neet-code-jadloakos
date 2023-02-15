@@ -43,4 +43,18 @@ public class StackSolutionsTest {
     assertEquals(0, minStack.top());
     assertEquals(-2, minStack.getMin());
   }
+
+  @Test
+  public void testEvalRPN() {
+    // Arrange
+    var tokensOne = new String[] {"2", "1", "+", "3", "*"};
+    var tokenTwo = new String[] {"4", "13", "5", "/", "+"};
+    var tokenThree =
+        new String[] {"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"};
+
+    // Act & Assert
+    assertEquals(9, stackSolutions.evalRPN(tokensOne));
+    assertEquals(6, stackSolutions.evalRPN(tokenTwo));
+    assertEquals(22, stackSolutions.evalRPN(tokenThree));
+  }
 }

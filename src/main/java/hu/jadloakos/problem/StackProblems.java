@@ -25,6 +25,36 @@ public interface StackProblems {
   MinStack getMinStack();
 
   /**
+   * You are given an array of strings tokens that represent an arithmetic expression in a Reverse
+   * Polish Notation.
+   *
+   * <p>Evaluate the expression. Return an integer that represents the value of the expression.
+   *
+   * <p>Note that:
+   *
+   * <ul>
+   *   <li>The valid operators are '+', '-', '*', and '/'.
+   *   <li>Each operand may be an integer or another expression.
+   *   <li>The division between two integers always truncates toward zero.
+   *   <li>There will not be any division by zero.
+   *   <li>The input represents a valid arithmetic expression in a reverse polish notation.
+   *   <li>The answer and all the intermediate calculations can be represented in a 32-bit integer.
+   * </ul>
+   *
+   * Exmle:
+   *
+   * <ul>
+   *   <li>Input: ["4","13","5","/","+"]
+   *   <li>Output: 6
+   *   <li>Explanation: (4 + (13 / 5)) = 6
+   * </ul>
+   *
+   * @param tokens array of string containing operators and numbers
+   * @return result of the evaluation
+   */
+  int evalRPN(String[] tokens);
+
+  /**
    * Design a stack that supports push, pop, top, and retrieving the minimum element in constant
    * time.
    *

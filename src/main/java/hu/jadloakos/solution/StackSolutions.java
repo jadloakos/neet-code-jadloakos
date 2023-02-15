@@ -2,9 +2,8 @@ package hu.jadloakos.solution;
 
 import hu.jadloakos.problem.StackProblems;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
+import java.util.function.BiFunction;
 
 /** Solutions for problems in {@link StackProblems}. */
 public class StackSolutions implements StackProblems {
@@ -36,6 +35,35 @@ public class StackSolutions implements StackProblems {
   @Override
   public MinStack getMinStack() {
     return new MinStackSolution();
+  }
+
+  @Override
+  public int evalRPN(String[] tokens) {
+    Map<String, BiFunction<Integer, Integer, Integer>> operationMap =
+        Map.of(
+            "+", Integer::sum,
+            "-", (a, b) -> a - b,
+            "*", (a, b) -> a * b,
+            "/", (a, b) -> a / b);
+    List<String> operators = List.of("+", "-", "*", "/");
+
+    Stack<Integer> numberTokens = new Stack<>();
+    Integer result = null;
+
+    for (String token : tokens) {
+      var indexOfOperator = operators.indexOf(token);
+
+      if (indexOfOperator == -1) {
+        numberTokens.push(Integer.parseInt(token));
+      } else {
+        if (result == null) {
+          result = numberTokens.pop();
+        }
+        result = operationMap.get(operators.get(indexOfOperator)).apply(numberTokens.pop(), result);
+      }
+    }
+
+    return Optional.ofNullable(result).orElse(0);
   }
 
   private static class MinStackSolution implements MinStack {
