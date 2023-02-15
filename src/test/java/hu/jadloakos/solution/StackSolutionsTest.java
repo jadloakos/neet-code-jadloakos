@@ -4,6 +4,10 @@ import hu.jadloakos.problem.StackProblems;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /** Test class for {@link StackSolutions} */
@@ -56,5 +60,16 @@ public class StackSolutionsTest {
     assertEquals(9, stackSolutions.evalRPN(tokensOne));
     assertEquals(6, stackSolutions.evalRPN(tokenTwo));
     assertEquals(22, stackSolutions.evalRPN(tokenThree));
+  }
+
+  @Test
+  public void testGenerateParenthesis() {
+    // Arrange & Act & Assert
+    assertEquals(List.of("()"), stackSolutions.generateParenthesis(1));
+    assertEquals(
+        Stream.of("((()))", "(()())", "(())()", "()(())", "()()()")
+            .sorted()
+            .collect(Collectors.toList()),
+        stackSolutions.generateParenthesis(3).stream().sorted().collect(Collectors.toList()));
   }
 }

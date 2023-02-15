@@ -1,5 +1,7 @@
 package hu.jadloakos.problem;
 
+import java.util.List;
+
 /** Interface for stack problems */
 public interface StackProblems {
 
@@ -41,7 +43,7 @@ public interface StackProblems {
    *   <li>The answer and all the intermediate calculations can be represented in a 32-bit integer.
    * </ul>
    *
-   * Exmle:
+   * Example:
    *
    * <ul>
    *   <li>Input: ["4","13","5","/","+"]
@@ -53,6 +55,22 @@ public interface StackProblems {
    * @return result of the evaluation
    */
   int evalRPN(String[] tokens);
+
+  /**
+   * Given n pairs of parentheses, write a function to generate all combinations of well-formed
+   * parentheses.
+   *
+   * <p>Example:
+   *
+   * <ul>
+   *   <li>Input: 3
+   *   <li>Output: ["((()))","(()())","(())()","()(())","()()()"]
+   * </ul>
+   *
+   * @param n parentheses pair count
+   * @return all valid combinations
+   */
+  List<String> generateParenthesis(int n);
 
   /**
    * Design a stack that supports push, pop, top, and retrieving the minimum element in constant

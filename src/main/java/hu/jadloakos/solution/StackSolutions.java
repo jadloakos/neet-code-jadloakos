@@ -4,6 +4,7 @@ import hu.jadloakos.problem.StackProblems;
 
 import java.util.*;
 import java.util.function.BiFunction;
+import java.util.stream.Collectors;
 
 /** Solutions for problems in {@link StackProblems}. */
 public class StackSolutions implements StackProblems {
@@ -64,6 +65,39 @@ public class StackSolutions implements StackProblems {
     }
 
     return Optional.ofNullable(result).orElse(0);
+  }
+
+  @Override
+  public List<String> generateParenthesis(int n) {
+    if (n == 1) {
+      return List.of("()");
+    }
+
+    var combinations = new HashSet<String>();
+
+    var simpleCombination = new char[n * 2];
+    Arrays.fill(simpleCombination, 0, n, '(');
+    Arrays.fill(simpleCombination, n, n * 2, ')');
+    combinations.add(new String(simpleCombination));
+
+    var smallerCombinations = generateParenthesis(n - 1);
+    // right
+    combinations.addAll(
+        smallerCombinations.stream()
+            .map(smallerCombination -> smallerCombination + "()")
+            .collect(Collectors.toList()));
+    // left
+    combinations.addAll(
+        smallerCombinations.stream()
+            .map(smallerCombination -> "()" + smallerCombination)
+            .collect(Collectors.toList()));
+    // inside
+    combinations.addAll(
+        smallerCombinations.stream()
+            .map(smallerCombination -> "(" + smallerCombination + ")")
+            .collect(Collectors.toList()));
+
+    return new ArrayList<>(combinations);
   }
 
   private static class MinStackSolution implements MinStack {
