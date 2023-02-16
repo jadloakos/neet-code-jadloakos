@@ -5,7 +5,6 @@ import hu.jadloakos.problem.StackProblems;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /** Solutions for problems in {@link StackProblems}. */
 public class StackSolutions implements StackProblems {
@@ -103,38 +102,37 @@ public class StackSolutions implements StackProblems {
 
   @Override
   public int[] dailyTemperatures(int[] temperatures) {
-    var daysToWait = new int[temperatures.length];
-    var stack = new Stack<Integer>();
+    var result = new int[temperatures.length];
+    var processedTemperatures = new Stack<Integer>();
+    var daysForProcessedTemperatures = new Stack<Integer>();
 
     if (temperatures.length < 2) {
-      return daysToWait;
+      return result;
     }
 
-    stack.push(temperatures[temperatures.length - 1]);
+    processedTemperatures.push(temperatures[temperatures.length - 1]);
+    daysForProcessedTemperatures.push(0);
 
     for (int i = temperatures.length - 2; i >= 0; i--) {
       var temperature = temperatures[i];
 
-      var backtrackCount = 0;
-      while (!stack.empty()) {
-        var stackTop = stack.peek();
-        if (temperature > stackTop) {
-          stack.pop();
-          backtrackCount++;
+      var daysToWait = 1;
+      while (!processedTemperatures.empty()) {
+        var lastProcessedTemperature = processedTemperatures.peek();
+        if (temperature > lastProcessedTemperature) {
+          processedTemperatures.pop();
+          daysToWait += daysForProcessedTemperatures.pop();
         } else {
-          daysToWait[i] = backtrackCount + 1;
+          result[i] = daysToWait;
           break;
         }
       }
 
-      IntStream.range(0, daysToWait[i]).map(noUse -> temperature).forEach(stack::push);
-
-      if (stack.empty()) {
-        stack.push(temperature);
-      }
+      processedTemperatures.push(temperature);
+      daysForProcessedTemperatures.push(result[i]);
     }
 
-    return daysToWait;
+    return result;
   }
 
   private static class MinStackSolution implements MinStack {
