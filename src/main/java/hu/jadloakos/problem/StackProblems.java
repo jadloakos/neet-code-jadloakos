@@ -73,6 +73,24 @@ public interface StackProblems {
   List<String> generateParenthesis(int n);
 
   /**
+   * Given an array of integer temperatures represents the daily temperatures, return an array
+   * answer such that answer[i] is the number of days you have to wait after the ith day to get a
+   * warmer temperature. If there is no future day for which this is possible, keep answer[i] == 0
+   * instead.
+   *
+   * <p>Example:
+   *
+   * <ul>
+   *   <li>Input: [73,74,75,71,69,72,76,73]
+   *   <li>Output: [1,1,4,2,1,1,0,0]
+   * </ul>
+   *
+   * @param temperatures array of integers representing daily temperatures
+   * @return number of days per day for warmer temperature
+   */
+  int[] dailyTemperatures(int[] temperatures);
+
+  /**
    * Design a stack that supports push, pop, top, and retrieving the minimum element in constant
    * time.
    *

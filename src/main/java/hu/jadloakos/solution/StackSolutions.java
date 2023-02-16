@@ -5,6 +5,7 @@ import hu.jadloakos.problem.StackProblems;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /** Solutions for problems in {@link StackProblems}. */
 public class StackSolutions implements StackProblems {
@@ -98,6 +99,42 @@ public class StackSolutions implements StackProblems {
             .collect(Collectors.toList()));
 
     return new ArrayList<>(combinations);
+  }
+
+  @Override
+  public int[] dailyTemperatures(int[] temperatures) {
+    var daysToWait = new int[temperatures.length];
+    var stack = new Stack<Integer>();
+
+    if (temperatures.length < 2) {
+      return daysToWait;
+    }
+
+    stack.push(temperatures[temperatures.length - 1]);
+
+    for (int i = temperatures.length - 2; i >= 0; i--) {
+      var temperature = temperatures[i];
+
+      var backtrackCount = 0;
+      while (!stack.empty()) {
+        var stackTop = stack.peek();
+        if (temperature > stackTop) {
+          stack.pop();
+          backtrackCount++;
+        } else {
+          daysToWait[i] = backtrackCount + 1;
+          break;
+        }
+      }
+
+      IntStream.range(0, daysToWait[i]).map(noUse -> temperature).forEach(stack::push);
+
+      if (stack.empty()) {
+        stack.push(temperature);
+      }
+    }
+
+    return daysToWait;
   }
 
   private static class MinStackSolution implements MinStack {
