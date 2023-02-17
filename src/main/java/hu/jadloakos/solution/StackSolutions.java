@@ -135,6 +135,31 @@ public class StackSolutions implements StackProblems {
     return result;
   }
 
+  @Override
+  public int carFleet(int target, int[] position, int[] speed) {
+    if (position.length < 2) {
+      return position.length;
+    }
+
+    var cars = new int[position.length][2];
+    for (int i = 0; i < position.length; i++) {
+      cars[i][0] = position[i];
+      cars[i][1] = speed[i];
+    }
+
+    var fleet = new Stack<Float>();
+    Arrays.sort(cars, Comparator.comparingInt(car -> car[0]));
+
+    for (int[] car : cars) {
+      var timeToTarget = (float) (target - car[0]) / car[1];
+      if (fleet.empty() || fleet.peek() > timeToTarget) {
+        fleet.push(timeToTarget);
+      }
+    }
+
+    return fleet.size();
+  }
+
   private static class MinStackSolution implements MinStack {
 
     private final Stack<Integer> min = new Stack<>();

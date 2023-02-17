@@ -84,4 +84,13 @@ public class StackSolutionsTest {
     assertArrayEquals(
         new int[] {1, 1, 0}, stackSolutions.dailyTemperatures(new int[] {30, 60, 90}));
   }
+
+  @Test
+  public void testCarFleet() {
+    // Arrange & Act & Assert
+    assertEquals(
+        3, stackSolutions.carFleet(12, new int[] {10, 8, 0, 5, 3}, new int[] {2, 4, 1, 1, 3}));
+    assertEquals(1, stackSolutions.carFleet(10, new int[] {3}, new int[] {3}));
+    assertEquals(1, stackSolutions.carFleet(100, new int[] {0, 2, 4}, new int[] {4, 2, 1}));
+  }
 }
