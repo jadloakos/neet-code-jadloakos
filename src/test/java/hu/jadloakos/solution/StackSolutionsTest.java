@@ -93,4 +93,14 @@ public class StackSolutionsTest {
     assertEquals(1, stackSolutions.carFleet(10, new int[] {3}, new int[] {3}));
     assertEquals(1, stackSolutions.carFleet(100, new int[] {0, 2, 4}, new int[] {4, 2, 1}));
   }
+
+  @Test
+  public void testLargestRectangleArea() {
+    // Arrange & Act & Assert
+    assertEquals(10, stackSolutions.largestRectangleArea(new int[] {2, 1, 5, 6, 2, 3}));
+    assertEquals(12, stackSolutions.largestRectangleArea(new int[] {2, 1, 5, 6, 2, 3, 2, 2}));
+    assertEquals(
+        13, stackSolutions.largestRectangleArea(new int[] {2, 1, 5, 6, 2, 3, 1, 1, 1, 1, 1, 1, 1}));
+    assertEquals(6, stackSolutions.largestRectangleArea(new int[] {2, 1, 1, 2, 2, 2}));
+  }
 }

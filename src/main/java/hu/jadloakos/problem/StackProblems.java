@@ -146,6 +146,24 @@ public interface StackProblems {
   int carFleet(int target, int[] position, int[] speed);
 
   /**
+   * Given an array of integers heights representing the histogram's bar height where the width of
+   * each bar is 1, return the area of the largest rectangle in the histogram.
+   *
+   * <p>Example:
+   *
+   * <ul>
+   *   <li>Input: [2,1,5,6,2,3]
+   *   <li>Output: 10
+   *   <li>Explanation: The largest rectangle can be found for heights 5,6 which has an area = 10
+   *       units.
+   * </ul>
+   *
+   * @param heights bar heights
+   * @return largest rectangle
+   */
+  int largestRectangleArea(int[] heights);
+
+  /**
    * Design a stack that supports push, pop, top, and retrieving the minimum element in constant
    * time.
    *

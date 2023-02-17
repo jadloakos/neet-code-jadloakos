@@ -160,6 +160,38 @@ public class StackSolutions implements StackProblems {
     return fleet.size();
   }
 
+  @Override
+  public int largestRectangleArea(int[] heights) {
+    int max = 0;
+    var sortedHeights = Arrays.stream(heights).sorted().distinct().toArray();
+
+    // array where every index contains info about the last checked rectangle with height == index
+    // [0] - index of the first bar inside the rectangle
+    // [1] - index of the last bar inside the rectangle
+    // ([1] - [0] + 1)  * index = rectangle area
+    int[][] asd = new int[sortedHeights[sortedHeights.length - 1] + 1][];
+    for (int i = 0; i < asd.length; i++) {
+      asd[i] = new int[2];
+    }
+
+    for (int i = 0; i < heights.length; i++) {
+      // update all heights lower than the height of the current bar
+      for (int j = 0; j < sortedHeights.length && sortedHeights[j] <= heights[i]; j++) {
+        var height = sortedHeights[j];
+        // if last bar checked for the height is not the previous, then it is a new rectangle
+        if (asd[height][0] == 0 || asd[height][1] != i) {
+          asd[height][0] = i + 1;
+        }
+        asd[height][1] = i + 1;
+
+        // update max
+        max = Math.max(max, (asd[height][1] - asd[height][0] + 1) * (height));
+      }
+    }
+
+    return max;
+  }
+
   private static class MinStackSolution implements MinStack {
 
     private final Stack<Integer> min = new Stack<>();
