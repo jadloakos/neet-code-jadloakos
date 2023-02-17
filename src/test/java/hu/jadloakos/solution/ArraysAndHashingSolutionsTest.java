@@ -12,17 +12,17 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
 /** Test class for {@link ArraysAndHashingSolutionsTest} */
-public class ArraysAndHashingSolutionsTest {
+class ArraysAndHashingSolutionsTest {
 
   private ArraysAndHashingProblems arraysAndHashingSolutions;
 
   @BeforeEach
-  public void setup() {
+  void setup() {
     arraysAndHashingSolutions = new ArraysAndHashingSolutions();
   }
 
   @Test
-  public void testContainsDuplicate() {
+  void testContainsDuplicate() {
     // Arrange
     var noDuplicate = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
     var hasDuplicate = new int[] {1, 2, 3, 4, 5, 1, 2, 3, 4};
@@ -33,7 +33,7 @@ public class ArraysAndHashingSolutionsTest {
   }
 
   @Test
-  public void testIsAnagram() {
+  void testIsAnagram() {
     // Arrange
     var noAnagramBase = "asd";
     var noAnagramMatch = "asw";
@@ -46,7 +46,7 @@ public class ArraysAndHashingSolutionsTest {
   }
 
   @Test
-  public void testTwoSum() {
+  void testTwoSum() {
     // Arrange
     var nums = new int[] {1, 2, 2, 4, 12, 11, 7, 3, 6};
     var target = 10;
@@ -58,7 +58,7 @@ public class ArraysAndHashingSolutionsTest {
   }
 
   @Test
-  public void testGroupAnagrams() {
+  void testGroupAnagrams() {
     // Arrange
     var strs = new String[] {"asd", "dsa", "qwe"};
 
@@ -75,7 +75,7 @@ public class ArraysAndHashingSolutionsTest {
   }
 
   @Test
-  public void testTopKFrequent() {
+  void testTopKFrequent() {
     // Arrange
     var nums = new int[] {1, 1, 1, 2, 2, 3};
     var k = 2;
@@ -87,7 +87,7 @@ public class ArraysAndHashingSolutionsTest {
   }
 
   @Test
-  public void testProductExceptSelf() {
+  void testProductExceptSelf() {
     // Arrange
     var nums = new int[] {-1, 1, 0, -3, 3};
 
@@ -96,7 +96,7 @@ public class ArraysAndHashingSolutionsTest {
   }
 
   @Test
-  public void testIsValidSudoku() {
+  void testIsValidSudoku() {
     // Arrange
     var validBoard =
         new char[][] {
@@ -129,7 +129,7 @@ public class ArraysAndHashingSolutionsTest {
   }
 
   @Test
-  public void testEncodeDecode() {
+  void testEncodeDecode() {
     // Arrange
     var input = List.of("lint", "code", "love", "you");
     var harderInput = List.of("we", "say", ":", "yes");
@@ -142,7 +142,7 @@ public class ArraysAndHashingSolutionsTest {
   }
 
   @Test
-  public void testLongestConsecutive() {
+  void testLongestConsecutive() {
     // Arrange
     var inputOne = new int[] {100, 4, 200, 1, 3, 2};
     var inputTwo = new int[] {0, 3, 7, 2, 5, 8, 4, 6, 0, 1};

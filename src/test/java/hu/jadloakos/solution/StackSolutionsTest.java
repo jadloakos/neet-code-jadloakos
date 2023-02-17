@@ -11,17 +11,17 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 /** Test class for {@link StackSolutions} */
-public class StackSolutionsTest {
+class StackSolutionsTest {
 
   private StackProblems stackSolutions;
 
   @BeforeEach
-  public void setup() {
+  void setup() {
     stackSolutions = new StackSolutions();
   }
 
   @Test
-  public void testIsValid() {
+  void testIsValid() {
     // Arrange
     var valid = "()";
     var complexValid = "()[]{}";
@@ -34,7 +34,7 @@ public class StackSolutionsTest {
   }
 
   @Test
-  public void testMinStack() {
+  void testMinStack() {
     // Arrange
     var minStack = stackSolutions.getMinStack();
 
@@ -49,7 +49,7 @@ public class StackSolutionsTest {
   }
 
   @Test
-  public void testEvalRPN() {
+  void testEvalRPN() {
     // Arrange
     var tokensOne = new String[] {"2", "1", "+", "3", "*"};
     var tokenTwo = new String[] {"4", "13", "5", "/", "+"};
@@ -63,7 +63,7 @@ public class StackSolutionsTest {
   }
 
   @Test
-  public void testGenerateParenthesis() {
+  void testGenerateParenthesis() {
     // Arrange & Act & Assert
     assertEquals(List.of("()"), stackSolutions.generateParenthesis(1));
     assertEquals(
@@ -74,7 +74,7 @@ public class StackSolutionsTest {
   }
 
   @Test
-  public void testDailyTemperatures() {
+  void testDailyTemperatures() {
     // Arrange & Act & Assert
     assertArrayEquals(
         new int[] {1, 1, 4, 2, 1, 1, 0, 0},
@@ -86,7 +86,7 @@ public class StackSolutionsTest {
   }
 
   @Test
-  public void testCarFleet() {
+  void testCarFleet() {
     // Arrange & Act & Assert
     assertEquals(
         3, stackSolutions.carFleet(12, new int[] {10, 8, 0, 5, 3}, new int[] {2, 4, 1, 1, 3}));
@@ -95,7 +95,7 @@ public class StackSolutionsTest {
   }
 
   @Test
-  public void testLargestRectangleArea() {
+  void testLargestRectangleArea() {
     // Arrange & Act & Assert
     assertEquals(10, stackSolutions.largestRectangleArea(new int[] {2, 1, 5, 6, 2, 3}));
     assertEquals(12, stackSolutions.largestRectangleArea(new int[] {2, 1, 5, 6, 2, 3, 2, 2}));
