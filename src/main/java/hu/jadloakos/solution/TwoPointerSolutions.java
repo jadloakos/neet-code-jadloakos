@@ -2,6 +2,8 @@ package hu.jadloakos.solution;
 
 import hu.jadloakos.problem.TwoPointerProblems;
 
+import java.util.Arrays;
+
 /** Solutions for problems in {@link TwoPointerProblems}. */
 public class TwoPointerSolutions implements TwoPointerProblems {
 
@@ -31,5 +33,21 @@ public class TwoPointerSolutions implements TwoPointerProblems {
     }
 
     return true;
+  }
+
+  @Override
+  public int[] twoSum(int[] numbers, int target) {
+    if (numbers.length == 2 && numbers[0] + numbers[1] == target) {
+      return new int[] {1, 2};
+    }
+
+    for (int i = 0; i < numbers.length - 2; i++) {
+      var sumPairIndex = Arrays.binarySearch(numbers, i + 1, numbers.length, target - numbers[i]);
+      if (sumPairIndex >= 0) {
+        return new int[] {i + 1, sumPairIndex + 1};
+      }
+    }
+
+    throw new IllegalArgumentException("No solution for the inputs!");
   }
 }
