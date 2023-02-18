@@ -23,4 +23,27 @@ public class BinarySearchSolutions implements BinarySearchProblems {
 
     return nums[right] == target ? right : -1;
   }
+
+  @Override
+  public boolean searchMatrix(int[][] matrix, int target) {
+    int tail = 0;
+    int head = matrix.length * matrix.length - 1;
+
+    while (head - tail > 1) {
+      var check = Math.floorDiv(head + tail, 2);
+      var valueAtCheck = matrix[check / matrix.length][check % matrix.length];
+      if (valueAtCheck == target) {
+        return true;
+      }
+
+      if (valueAtCheck < target) {
+        tail = check;
+      } else {
+        head = check;
+      }
+    }
+
+    var valueAtHead = matrix[head / matrix.length][head % matrix.length];
+    return valueAtHead == target;
+  }
 }
