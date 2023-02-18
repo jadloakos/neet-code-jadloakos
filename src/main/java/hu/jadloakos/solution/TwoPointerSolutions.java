@@ -106,47 +106,48 @@ public class TwoPointerSolutions implements TwoPointerProblems {
       return 0;
     }
 
-    int trap = 0;
+    int trappedWater = 0;
     int tail = 0;
     int head = height.length - 1;
 
-    int tailHeight = tail;
-    int tailSum = height[tailHeight];
+    int highestTail = tail;
+    int tailBottom = 0;
 
-    int headHeight = head;
-    int headSum = height[headHeight];
+    int highestHead = head;
+    int headBottom = 0;
 
+    // calc trapped water until tail and head are next to each other
     while (head - tail != 1) {
-      if (height[tailHeight] < height[headHeight]) {
+      // always step with the smaller index
+      if (height[highestTail] < height[highestHead]) {
         tail++;
 
-        if (height[tail] >= height[tailHeight]) {
-          trap += height[tailHeight] * (tail - tailHeight) - tailSum;
-          tailHeight = tail;
-          tailSum = height[tailHeight];
+        // if tail is higher than last highest tail then water is trapped
+        if (height[tail] >= height[highestTail]) {
+          trappedWater += height[highestTail] * (tail - highestTail - 1) - tailBottom;
+          highestTail = tail;
+          tailBottom = 0;
         } else {
-          tailSum += height[tail];
+          tailBottom += height[tail];
         }
       } else {
         head--;
 
-        if (height[head] >= height[headHeight]) {
-          trap += height[headHeight] * (headHeight - head) - headSum;
-          headHeight = head;
-          headSum = height[headHeight];
+        // if head is higher than last highest head then water is trapped
+        if (height[head] >= height[highestHead]) {
+          trappedWater += height[highestHead] * (highestHead - head - 1) - headBottom;
+          highestHead = head;
+          headBottom = 0;
         } else {
-          headSum += height[head];
+          headBottom += height[head];
         }
       }
     }
 
-    trap +=
-        Math.min(height[tailHeight], height[headHeight]) * (headHeight - tailHeight - 1)
-            - tailSum
-            - headSum
-            + height[tailHeight]
-            + height[headHeight];
+    // calc trapped water between the highest tail and the highest head
+    var line = Math.min(height[highestTail], height[highestHead]);
+    trappedWater += line * (highestHead - highestTail - 1) - tailBottom - headBottom;
 
-    return trap;
+    return trappedWater;
   }
 }
