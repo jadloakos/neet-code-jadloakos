@@ -99,4 +99,43 @@ public class TwoPointerSolutions implements TwoPointerProblems {
 
     return max;
   }
+
+  @Override
+  public int trap(int[] height) {
+    var maxTail = 0;
+    var maxHead = height.length - 1;
+    var max = 0;
+    for (int tail = 0, head = height.length - 1; tail < head; ) {
+      var minHeight = Math.min(height[tail], height[head]);
+      if (max < minHeight * (head - tail)) {
+        maxTail = tail;
+        maxHead = head;
+        max = Math.max(max, minHeight * (head - tail));
+      }
+
+      if (height[tail] > height[head]) {
+        head--;
+      } else {
+        tail++;
+      }
+    }
+
+    var leftTrap = 0;
+    if (maxTail > 0) {
+      leftTrap = trap(Arrays.copyOfRange(height, 0, maxTail + 1));
+    }
+
+    var rightTrap = 0;
+    if (maxHead < height.length - 1) {
+      rightTrap = trap(Arrays.copyOfRange(height, maxHead, height.length));
+    }
+
+    var trap = 0;
+    var line = Math.min(height[maxTail], height[maxHead]);
+    for (int i = maxTail; i <= maxHead; i++) {
+      trap += Math.max(0, line - height[i]);
+    }
+
+    return trap + leftTrap + rightTrap;
+  }
 }

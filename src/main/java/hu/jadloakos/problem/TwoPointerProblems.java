@@ -96,4 +96,22 @@ public interface TwoPointerProblems {
    * @return max amount of water the container can store
    */
   int maxArea(int[] height);
+
+  /**
+   * Given n non-negative integers representing an elevation map where the width of each bar is 1,
+   * compute how much water it can trap after raining.
+   *
+   * <p>Example:
+   *
+   * <ul>
+   *   <li>Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
+   *   <li>Output: 6
+   *   <li>Explanation: The elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this
+   *       case, 6 units of rain water are being trapped.
+   * </ul>
+   *
+   * @param height elevation
+   * @return amount of water that can be trapped
+   */
+  int trap(int[] height);
 }

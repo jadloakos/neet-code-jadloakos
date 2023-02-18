@@ -55,4 +55,11 @@ class TwoPointerSolutionsTest {
     assertEquals(49, twoPointerSolutions.maxArea(new int[] {1, 8, 6, 2, 5, 4, 8, 3, 7}));
     assertEquals(1, twoPointerSolutions.maxArea(new int[] {1, 1}));
   }
+
+  @Test
+  void testTrap() {
+    // Arrange && Act && Assert
+    assertEquals(6, twoPointerSolutions.trap(new int[] {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}));
+    assertEquals(9, twoPointerSolutions.trap(new int[] {4, 2, 0, 3, 2, 5}));
+  }
 }
