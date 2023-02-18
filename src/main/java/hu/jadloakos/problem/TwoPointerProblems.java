@@ -1,5 +1,7 @@
 package hu.jadloakos.problem;
 
+import java.util.List;
+
 /** Interface for two pointer problems. */
 public interface TwoPointerProblems {
 
@@ -42,4 +44,30 @@ public interface TwoPointerProblems {
    * @return the indices adding up to sum
    */
   int[] twoSum(int[] numbers, int target);
+
+  /**
+   * Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i !=
+   * j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+   *
+   * <p>Notice that the solution set must not contain duplicate triplets.
+   *
+   * <p>Example:
+   *
+   * <ul>
+   *   <li>Inputs: nums = [-1,0,1,2,-1,-4]
+   *   <li>Output: [[-1,-1,2],[-1,0,1]]
+   *   <li>Explanation:
+   *       <ul>
+   *         <li>nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
+   *         <li>nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
+   *         <li>nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
+   *         <li>The distinct triplets are [-1,0,1] and [-1,-1,2]. Notice that the order of the
+   *             output and the order of the triplets does not matter.
+   *       </ul>
+   * </ul>
+   *
+   * @param nums array of numbers
+   * @return triplets without duplication
+   */
+  List<List<Integer>> threeSum(int[] nums);
 }
