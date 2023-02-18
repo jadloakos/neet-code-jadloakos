@@ -46,4 +46,9 @@ public class BinarySearchSolutions implements BinarySearchProblems {
     var valueAtHead = matrix[head / matrix.length][head % matrix.length];
     return valueAtHead == target;
   }
+
+  @Override
+  public int minEatingSpeed(int[] piles, int h) {
+    return 0;
+  }
 }

@@ -43,4 +43,12 @@ public class BinarySearchSolutionsTest {
             },
             13));
   }
+
+  @Test
+  void testMinEatingSpeed() {
+    // Arrange & Act & Assert
+    assertEquals(4, binarySearchSolutions.minEatingSpeed(new int[] {3, 6, 7, 11}, 8));
+    assertEquals(30, binarySearchSolutions.minEatingSpeed(new int[] {30, 11, 23, 4, 20}, 5));
+    assertEquals(23, binarySearchSolutions.minEatingSpeed(new int[] {30, 11, 23, 4, 20}, 6));
+  }
 }
