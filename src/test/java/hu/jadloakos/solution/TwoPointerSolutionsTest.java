@@ -48,4 +48,11 @@ class TwoPointerSolutionsTest {
     assertThat(twoPointerSolutions.threeSum(new int[] {0, 1, 1}), empty());
     assertEquals(List.of(List.of(0, 0, 0)), twoPointerSolutions.threeSum(new int[] {0, 0, 0}));
   }
+
+  @Test
+  void testMaxArea() {
+    // Arrange && Act && Assert
+    assertEquals(49, twoPointerSolutions.maxArea(new int[] {1, 8, 6, 2, 5, 4, 8, 3, 7}));
+    assertEquals(1, twoPointerSolutions.maxArea(new int[] {1, 1}));
+  }
 }

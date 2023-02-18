@@ -82,4 +82,21 @@ public class TwoPointerSolutions implements TwoPointerProblems {
 
     return sums;
   }
+
+  @Override
+  public int maxArea(int[] height) {
+    var max = 0;
+    for (int tail = 0, head = height.length - 1; tail < head; ) {
+      var minHeight = Math.min(height[tail], height[head]);
+      max = Math.max(max, minHeight * (head - tail));
+
+      if (height[tail] > height[head]) {
+        head--;
+      } else {
+        tail++;
+      }
+    }
+
+    return max;
+  }
 }

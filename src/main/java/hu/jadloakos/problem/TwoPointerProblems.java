@@ -70,4 +70,30 @@ public interface TwoPointerProblems {
    * @return triplets without duplication
    */
   List<List<Integer>> threeSum(int[] nums);
+
+  /**
+   * You are given an integer array height of length n. There are n vertical lines drawn such that
+   * the two endpoints of the ith line are (i, 0) and (i, height[i]).
+   *
+   * <p>Find two lines that together with the x-axis form a container, such that the container
+   * contains the most water.
+   *
+   * <p>Return the maximum amount of water a container can store.
+   *
+   * <p>Notice that you may not slant the container.
+   *
+   * <p>Example:
+   *
+   * <ul>
+   *   <li>Input: height = [1,8,6,2,5,4,8,3,7]
+   *   <li>Output: 49
+   *   <li>Explanation: The vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this
+   *       case, the max area of water in the container can contain is 49 (area between index 1 with
+   *       value 8 and index 8 with value 7).
+   * </ul>
+   *
+   * @param height array of heights
+   * @return max amount of water the container can store
+   */
+  int maxArea(int[] height);
 }
