@@ -61,5 +61,8 @@ class TwoPointerSolutionsTest {
     // Arrange && Act && Assert
     assertEquals(6, twoPointerSolutions.trap(new int[] {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}));
     assertEquals(9, twoPointerSolutions.trap(new int[] {4, 2, 0, 3, 2, 5}));
+    assertEquals(17, twoPointerSolutions.trap(new int[] {3, 1, 1, 1, 1, 4, 3, 4, 1, 1, 1, 1, 3}));
+    assertEquals(15, twoPointerSolutions.trap(new int[] {6, 1, 1, 1, 7}));
+    assertEquals(0, twoPointerSolutions.trap(new int[] {0, 1, 10, 1, 0}));
   }
 }

@@ -102,40 +102,51 @@ public class TwoPointerSolutions implements TwoPointerProblems {
 
   @Override
   public int trap(int[] height) {
-    var maxTail = 0;
-    var maxHead = height.length - 1;
-    var max = 0;
-    for (int tail = 0, head = height.length - 1; tail < head; ) {
-      var minHeight = Math.min(height[tail], height[head]);
-      if (max < minHeight * (head - tail)) {
-        maxTail = tail;
-        maxHead = head;
-        max = Math.max(max, minHeight * (head - tail));
-      }
+    if (height.length < 3) {
+      return 0;
+    }
 
-      if (height[tail] > height[head]) {
-        head--;
-      } else {
+    int trap = 0;
+    int tail = 0;
+    int head = height.length - 1;
+
+    int tailHeight = tail;
+    int tailSum = height[tailHeight];
+
+    int headHeight = head;
+    int headSum = height[headHeight];
+
+    while (head - tail != 1) {
+      if (height[tailHeight] < height[headHeight]) {
         tail++;
+
+        if (height[tail] >= height[tailHeight]) {
+          trap += height[tailHeight] * (tail - tailHeight) - tailSum;
+          tailHeight = tail;
+          tailSum = height[tailHeight];
+        } else {
+          tailSum += height[tail];
+        }
+      } else {
+        head--;
+
+        if (height[head] >= height[headHeight]) {
+          trap += height[headHeight] * (headHeight - head) - headSum;
+          headHeight = head;
+          headSum = height[headHeight];
+        } else {
+          headSum += height[head];
+        }
       }
     }
 
-    var leftTrap = 0;
-    if (maxTail > 0) {
-      leftTrap = trap(Arrays.copyOfRange(height, 0, maxTail + 1));
-    }
+    trap +=
+        Math.min(height[tailHeight], height[headHeight]) * (headHeight - tailHeight - 1)
+            - tailSum
+            - headSum
+            + height[tailHeight]
+            + height[headHeight];
 
-    var rightTrap = 0;
-    if (maxHead < height.length - 1) {
-      rightTrap = trap(Arrays.copyOfRange(height, maxHead, height.length));
-    }
-
-    var trap = 0;
-    var line = Math.min(height[maxTail], height[maxHead]);
-    for (int i = maxTail; i <= maxHead; i++) {
-      trap += Math.max(0, line - height[i]);
-    }
-
-    return trap + leftTrap + rightTrap;
+    return trap;
   }
 }
