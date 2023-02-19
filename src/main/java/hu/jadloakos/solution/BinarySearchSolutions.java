@@ -70,4 +70,42 @@ public class BinarySearchSolutions implements BinarySearchProblems {
 
     return tail;
   }
+
+  @Override
+  public int findMin(int[] nums) {
+    int tail = 0;
+    int head = nums.length - 1;
+
+    int lastTail = nums[tail];
+    int rotate = nums.length;
+
+    while (nums[tail] > nums[head]) {
+      rotate = (int) Math.ceil((double) rotate / 2);
+      if (nums[tail] < lastTail) {
+        lastTail = nums[tail];
+        tail = tail - rotate;
+        if (tail < 0) {
+          tail = nums.length - tail;
+        }
+
+        head = head - rotate;
+        if (head < 0) {
+          head = nums.length - head;
+        }
+      } else {
+        lastTail = nums[tail];
+        tail = tail + rotate;
+        if (tail >= nums.length) {
+          tail = tail - nums.length;
+        }
+
+        head = head + rotate;
+        if (head >= nums.length) {
+          head = head - nums.length;
+        }
+      }
+    }
+
+    return nums[tail];
+  }
 }

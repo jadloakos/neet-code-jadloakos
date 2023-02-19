@@ -51,4 +51,15 @@ public class BinarySearchSolutionsTest {
     assertEquals(30, binarySearchSolutions.minEatingSpeed(new int[] {30, 11, 23, 4, 20}, 5));
     assertEquals(23, binarySearchSolutions.minEatingSpeed(new int[] {30, 11, 23, 4, 20}, 6));
   }
+
+  @Test
+  void findMin() {
+    // Arrange & Act & Assert
+    assertEquals(1, binarySearchSolutions.findMin(new int[] {3, 4, 5, 1, 2}));
+    assertEquals(0, binarySearchSolutions.findMin(new int[] {4, 5, 6, 7, 0, 1, 2}));
+    assertEquals(11, binarySearchSolutions.findMin(new int[] {11, 13, 15, 17}));
+    assertEquals(2, binarySearchSolutions.findMin(new int[] {3, 4, 2}));
+    assertEquals(
+        2, binarySearchSolutions.findMin(new int[] {3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 2}));
+  }
 }
