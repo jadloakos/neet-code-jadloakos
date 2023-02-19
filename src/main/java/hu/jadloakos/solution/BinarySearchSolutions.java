@@ -2,7 +2,7 @@ package hu.jadloakos.solution;
 
 import hu.jadloakos.problem.BinarySearchProblems;
 
-import java.util.Arrays;
+import java.util.*;
 
 /** Solutions for problems in {@link BinarySearchProblems}. */
 public class BinarySearchSolutions implements BinarySearchProblems {
@@ -95,6 +95,11 @@ public class BinarySearchSolutions implements BinarySearchProblems {
     return -1;
   }
 
+  @Override
+  public TimeMap getTimeMap() {
+    return new TimeMapSolution();
+  }
+
   private int findMinIndex(int[] nums) {
     int tail = 0;
     int head = nums.length - 1;
@@ -130,5 +135,56 @@ public class BinarySearchSolutions implements BinarySearchProblems {
     }
 
     return tail;
+  }
+
+  private static class TimeMapSolution implements TimeMap {
+
+    private Map<String, List<TimeValue>> map = new HashMap<>();
+
+    @Override
+    public void set(String key, String value, int timestamp) {
+      var timeValues = map.get(key);
+      if (timeValues == null) {
+        var newTimeValues = new ArrayList<TimeValue>();
+        newTimeValues.add(new TimeValue(timestamp, value));
+        map.put(key, newTimeValues);
+        return;
+      }
+
+      var index = Collections.binarySearch(timeValues, timestamp);
+      if (index < 0) {
+        index = -(index + 1);
+      }
+
+      timeValues.add(index, new TimeValue(timestamp, value));
+    }
+
+    @Override
+    public String get(String key, int timestamp) {
+      var timeValues = map.get(key);
+      var index = Collections.binarySearch(timeValues, timestamp);
+      if (index >= 0) {
+        return timeValues.get(index).value;
+      }
+
+      var insertionPoint = -(index + 1);
+      return timeValues.get(insertionPoint - 1).value;
+    }
+  }
+
+  private static class TimeValue implements Comparable<Integer> {
+
+    private int time;
+    private String value;
+
+    public TimeValue(int time, String value) {
+      this.time = time;
+      this.value = value;
+    }
+
+    @Override
+    public int compareTo(Integer value) {
+      return Integer.compare(time, value);
+    }
   }
 }

@@ -70,4 +70,20 @@ public class BinarySearchSolutionsTest {
     assertEquals(-1, binarySearchSolutions.searchRotated(new int[] {4, 5, 6, 7, 0, 1, 2}, 3));
     assertEquals(-1, binarySearchSolutions.searchRotated(new int[] {1}, 0));
   }
+
+  @Test
+  void testGetTimeMap() {
+    var timeMap = binarySearchSolutions.getTimeMap();
+    timeMap.set("foo", "bar", 1); // store the key "foo" and value "bar" along with timestamp = 1.
+    // return "bar"
+    assertEquals("bar", timeMap.get("foo", 1));
+    // return "bar", since there is no value corresponding to foo at timestamp 3 and timestamp 2,
+    // then the only value is at timestamp 1 is "bar".
+    assertEquals("bar", timeMap.get("foo", 3));
+    timeMap.set("foo", "bar2", 4); // store the key "foo" and value "bar2" along with timestamp = 4.
+    // return "bar2"
+    assertEquals("bar2", timeMap.get("foo", 4));
+    // return "bar2"
+    assertEquals("bar2", timeMap.get("foo", 5));
+  }
 }
