@@ -73,6 +73,29 @@ public class BinarySearchSolutions implements BinarySearchProblems {
 
   @Override
   public int findMin(int[] nums) {
+    return nums[findMinIndex(nums)];
+  }
+
+  @Override
+  public int searchRotated(int[] nums, int target) {
+    var minIndex = findMinIndex(nums);
+
+    // binary search all values after min index
+    var headIndex = Arrays.binarySearch(nums, minIndex, nums.length, target);
+    if (headIndex >= 0) {
+      return headIndex;
+    }
+
+    // binary search all values before min index
+    var tailIndex = Arrays.binarySearch(nums, 0, minIndex, target);
+    if (tailIndex >= 0) {
+      return tailIndex;
+    }
+
+    return -1;
+  }
+
+  private int findMinIndex(int[] nums) {
     int tail = 0;
     int head = nums.length - 1;
 
@@ -106,6 +129,6 @@ public class BinarySearchSolutions implements BinarySearchProblems {
       }
     }
 
-    return nums[tail];
+    return tail;
   }
 }

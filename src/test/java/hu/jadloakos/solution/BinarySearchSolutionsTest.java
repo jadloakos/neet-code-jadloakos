@@ -62,4 +62,12 @@ public class BinarySearchSolutionsTest {
     assertEquals(
         2, binarySearchSolutions.findMin(new int[] {3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 2}));
   }
+
+  @Test
+  void testSearchRotated() {
+    // Arrange & Act & Assert
+    assertEquals(4, binarySearchSolutions.searchRotated(new int[] {4, 5, 6, 7, 0, 1, 2}, 0));
+    assertEquals(-1, binarySearchSolutions.searchRotated(new int[] {4, 5, 6, 7, 0, 1, 2}, 3));
+    assertEquals(-1, binarySearchSolutions.searchRotated(new int[] {1}, 0));
+  }
 }
