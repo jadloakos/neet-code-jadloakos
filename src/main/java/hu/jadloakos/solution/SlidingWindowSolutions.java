@@ -49,6 +49,11 @@ public class SlidingWindowSolutions implements SlidingWindowProblems {
     return longestCharCount;
   }
 
+  @Override
+  public int characterReplacement(String s, int k) {
+    return 0;
+  }
+
   private int search(char[] chars, int from, int to, char character) {
     for (int i = from; i < to; i++) {
       if (chars[i] == character) {

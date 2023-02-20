@@ -29,4 +29,11 @@ public class SlidingWindowSolutionsTest {
     assertEquals(1, slidingWindowSolutions.lengthOfLongestSubstring("bbbbb"));
     assertEquals(3, slidingWindowSolutions.lengthOfLongestSubstring("pwwkew"));
   }
+
+  @Test
+  void testCharacterReplacement() {
+    // Arrange & Act & Assert
+    assertEquals(4, slidingWindowSolutions.characterReplacement("ABAB", 2));
+    assertEquals(4, slidingWindowSolutions.characterReplacement("AABABBA", 1));
+  }
 }

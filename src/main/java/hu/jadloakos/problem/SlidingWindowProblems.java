@@ -24,4 +24,26 @@ public interface SlidingWindowProblems {
    * @return length of the longest substring without repeating characters
    */
   int lengthOfLongestSubstring(String s);
+
+  /**
+   * You are given a string s and an integer k. You can choose any character of the string and
+   * change it to any other uppercase English character. You can perform this operation at most k
+   * times.
+   *
+   * <p>Return the length of the longest substring containing the same letter you can get after
+   * performing the above operations.
+   *
+   * <p>Example:
+   *
+   * <ul>
+   *   <li>Input: s = "ABAB", k = 2
+   *   <li>Output: 4
+   *   <li>Explanation: Replace the two 'A's with two 'B's or vice versa.
+   * </ul>
+   *
+   * @param s string
+   * @param k times a character can be changed to any other uppercase english character
+   * @return longest substring with same letter after changes
+   */
+  int characterReplacement(String s, int k);
 }
