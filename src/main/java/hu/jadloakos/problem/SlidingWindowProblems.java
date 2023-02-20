@@ -16,4 +16,12 @@ public interface SlidingWindowProblems {
    * @return maximum profit
    */
   int maxProfit(int[] prices);
+
+  /**
+   * Given a string s, find the length of the longest substring without repeating characters.
+   *
+   * @param s string
+   * @return length of the longest substring without repeating characters
+   */
+  int lengthOfLongestSubstring(String s);
 }

@@ -22,4 +22,40 @@ public class SlidingWindowSolutions implements SlidingWindowProblems {
 
     return maxProfit;
   }
+
+  @Override
+  public int lengthOfLongestSubstring(String s) {
+    if (s.length() < 2) {
+      return s.length();
+    }
+
+    var chars = s.toCharArray();
+    var longestCharCount = 1;
+    var tail = 0;
+    var head = 1;
+
+    while (head < s.length()) {
+      var charAtHead = s.charAt(head);
+      var matchingIndex = search(chars, tail, head, charAtHead);
+      if (matchingIndex == -1) {
+        longestCharCount = Math.max(longestCharCount, head - tail + 1);
+      } else {
+        tail = matchingIndex + 1;
+      }
+
+      head++;
+    }
+
+    return longestCharCount;
+  }
+
+  private int search(char[] chars, int from, int to, char character) {
+    for (int i = from; i < to; i++) {
+      if (chars[i] == character) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
 }
