@@ -82,6 +82,11 @@ public class SlidingWindowSolutions implements SlidingWindowProblems {
     return longest;
   }
 
+  @Override
+  public boolean checkInclusion(String s1, String s2) {
+    return false;
+  }
+
   private int search(char[] chars, int from, int to, char character) {
     for (int i = from; i < to; i++) {
       if (chars[i] == character) {

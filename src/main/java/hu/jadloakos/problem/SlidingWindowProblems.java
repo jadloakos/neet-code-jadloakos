@@ -46,4 +46,16 @@ public interface SlidingWindowProblems {
    * @return longest substring with same letter after changes
    */
   int characterReplacement(String s, int k);
+
+  /**
+   * Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false
+   * otherwise.
+   *
+   * <p>In other words, return true if one of s1's permutations is the substring of s2.
+   *
+   * @param s1 first string
+   * @param s2 second string
+   * @return true if s1's permutations is the substring of s2, false otherwise
+   */
+  boolean checkInclusion(String s1, String s2);
 }

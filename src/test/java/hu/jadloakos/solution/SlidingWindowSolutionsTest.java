@@ -4,7 +4,7 @@ import hu.jadloakos.problem.SlidingWindowProblems;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /** Test class for {@link hu.jadloakos.solution.SlidingWindowSolutions} */
 public class SlidingWindowSolutionsTest {
@@ -36,5 +36,11 @@ public class SlidingWindowSolutionsTest {
     assertEquals(4, slidingWindowSolutions.characterReplacement("ABAB", 2));
     assertEquals(4, slidingWindowSolutions.characterReplacement("AABABBA", 1));
     assertEquals(6, slidingWindowSolutions.characterReplacement("ABCDEEEEE", 1));
+  }
+
+  @Test
+  void testCheckInclusion() {
+    assertTrue(slidingWindowSolutions.checkInclusion("ab", "eidbaooo"));
+    assertFalse(slidingWindowSolutions.checkInclusion("ab", "eidboaoo"));
   }
 }
