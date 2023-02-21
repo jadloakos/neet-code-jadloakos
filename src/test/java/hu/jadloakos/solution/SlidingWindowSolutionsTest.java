@@ -35,5 +35,6 @@ public class SlidingWindowSolutionsTest {
     // Arrange & Act & Assert
     assertEquals(4, slidingWindowSolutions.characterReplacement("ABAB", 2));
     assertEquals(4, slidingWindowSolutions.characterReplacement("AABABBA", 1));
+    assertEquals(6, slidingWindowSolutions.characterReplacement("ABCDEEEEE", 1));
   }
 }

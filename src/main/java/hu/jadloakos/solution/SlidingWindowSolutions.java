@@ -51,7 +51,35 @@ public class SlidingWindowSolutions implements SlidingWindowProblems {
 
   @Override
   public int characterReplacement(String s, int k) {
-    return 0;
+    if (s.length() < 2) {
+      return s.length();
+    }
+
+    var longest = 1;
+    int tail = 0;
+    int head = 1;
+    int remainingK = k;
+
+    while (head < s.length()) {
+      var charAtHead = s.charAt(head);
+      var charAtTail = s.charAt(tail);
+      if (charAtHead == charAtTail) {
+        longest = Math.max(longest, Math.min(s.length(), head - tail + 1 + remainingK));
+        head++;
+      } else {
+        if (remainingK > 0) {
+          remainingK--;
+          longest = Math.max(longest, Math.min(s.length(), head - tail + 1 + remainingK));
+          head++;
+        } else {
+          tail++;
+          head = tail + 1;
+          remainingK = k;
+        }
+      }
+    }
+
+    return longest;
   }
 
   private int search(char[] chars, int from, int to, char character) {
