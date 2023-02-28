@@ -18,15 +18,30 @@ public class LinkedListSolutionsTest {
 
   @Test
   void testReverseList() {
-    // Arrange
-    var headOne = buildListNode(new int[] {1, 2, 3, 4, 5});
-    var headTwo = buildListNode(new int[] {1, 2});
-    var headThree = buildListNode(new int[] {});
+    // Arrange & Act & Assert
+    assertListNode(
+        new int[] {5, 4, 3, 2, 1},
+        linkedListSolutions.reverseList(buildListNode(new int[] {1, 2, 3, 4, 5})));
+    assertListNode(
+        new int[] {2, 1}, linkedListSolutions.reverseList(buildListNode(new int[] {1, 2})));
+    assertListNode(new int[] {}, linkedListSolutions.reverseList(buildListNode(new int[] {})));
+  }
 
-    // Act & Assert
-    assertListNode(new int[] {5, 4, 3, 2, 1}, linkedListSolutions.reverseList(headOne));
-    assertListNode(new int[] {2, 1}, linkedListSolutions.reverseList(headTwo));
-    assertListNode(new int[] {}, linkedListSolutions.reverseList(headThree));
+  @Test
+  void testMergeTwoLists() {
+    // Arrange & Act & Assert
+    assertListNode(
+        new int[] {1, 1, 2, 3, 4, 4},
+        linkedListSolutions.mergeTwoLists(
+            buildListNode(new int[] {1, 2, 4}), buildListNode(new int[] {1, 3, 4})));
+    assertListNode(
+        new int[] {},
+        linkedListSolutions.mergeTwoLists(
+            buildListNode(new int[] {}), buildListNode(new int[] {})));
+    assertListNode(
+        new int[] {0},
+        linkedListSolutions.mergeTwoLists(
+            buildListNode(new int[] {}), buildListNode(new int[] {0})));
   }
 
   private void assertListNode(int[] values, LinkedListProblems.ListNode head) {

@@ -18,4 +18,35 @@ public class LinkedListSolutions implements LinkedListProblems {
 
     return head;
   }
+
+  @Override
+  public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+    ListNode head = null;
+    while (list1 != null || list2 != null) {
+      ListNode smaller;
+      if (list1 == null) {
+        smaller = list2;
+        list2 = list2.getNext();
+      } else if (list2 == null) {
+        smaller = list1;
+        list1 = list1.getNext();
+      } else if (list1.getVal() < list2.getVal()) {
+        smaller = list1;
+        list1 = list1.getNext();
+      } else {
+        smaller = list2;
+        list2 = list2.getNext();
+      }
+
+      if (head == null) {
+        head = smaller;
+        continue;
+      }
+
+      head.setNext(smaller);
+      head = smaller;
+    }
+
+    return head;
+  }
 }
