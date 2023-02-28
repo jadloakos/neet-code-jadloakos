@@ -2,6 +2,7 @@ package hu.jadloakos.solution;
 
 import hu.jadloakos.problem.SlidingWindowProblems;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -89,10 +90,7 @@ public class SlidingWindowSolutions implements SlidingWindowProblems {
 
   @Override
   public boolean checkInclusion(String s1, String s2) {
-    Map<Character, Long> charsForPermutation =
-        s1.chars()
-            .mapToObj(ch -> (char) ch)
-            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+    Map<Character, Long> charsForPermutation = getCharCounts(s1);
 
     Map<Character, Long> charCounter = new HashMap<>();
     var index = 0;
@@ -120,7 +118,36 @@ public class SlidingWindowSolutions implements SlidingWindowProblems {
 
   @Override
   public String minWindow(String s, String t) {
-    return null;
+    Map<Character, Long> charsForPermutation = getCharCounts(t);
+    Map<Character, Long> charCounter = new HashMap<>();
+
+    var tail = 0;
+    var head = 0;
+    var min = new int[2];
+    Arrays.fill(min, -1);
+
+    while (head < s.length()) {
+      var charAtHead = s.charAt(head);
+      var maxAtHead = charsForPermutation.get(charAtHead);
+      if (maxAtHead == null) {
+        head++;
+        continue;
+      }
+
+      charCounter.compute(charAtHead, (key, value) -> (value == null ? 0L : 1L) + 1L);
+      while (charsForPermutation.entrySet().stream()
+          .allMatch(e -> charCounter.getOrDefault(e.getKey(), -1L) >= e.getValue())) {
+        if (min[0] == -1 || min[1] - min[0] > head + 1 - tail) {
+          min[0] = tail;
+          min[1] = head + 1;
+        }
+        charCounter.computeIfPresent(s.charAt(tail), (key, value) -> value - 1);
+        tail++;
+      }
+      head++;
+    }
+
+    return min[1] - min[0] == 0 ? "" : s.substring(min[0], min[1]);
   }
 
   private int search(char[] chars, int from, int to, char character) {
@@ -131,5 +158,11 @@ public class SlidingWindowSolutions implements SlidingWindowProblems {
     }
 
     return -1;
+  }
+
+  private Map<Character, Long> getCharCounts(String s) {
+    return s.chars()
+        .mapToObj(ch -> (char) ch)
+        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
   }
 }
