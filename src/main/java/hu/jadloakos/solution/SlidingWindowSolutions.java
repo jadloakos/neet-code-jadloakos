@@ -2,9 +2,7 @@ package hu.jadloakos.solution;
 
 import hu.jadloakos.problem.SlidingWindowProblems;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -148,6 +146,30 @@ public class SlidingWindowSolutions implements SlidingWindowProblems {
     }
 
     return min[1] - min[0] == 0 ? "" : s.substring(min[0], min[1]);
+  }
+
+  @Override
+  public int[] maxSlidingWindow(int[] nums, int k) {
+    var maxSliding = new int[nums.length - k + 1];
+    var slidingIndex = 0;
+    Deque<Integer> q = new LinkedList<>();
+    for (int i = 0; i < nums.length; i++) {
+      if (!q.isEmpty() && q.peekFirst() < i - k + 1) {
+        q.removeFirst();
+      }
+
+      while (!q.isEmpty() && nums[i] > nums[q.peekLast()]) {
+        q.removeLast();
+      }
+
+      q.add(i);
+      if (i >= k - 1) {
+        var maxIndexInWindow = q.peekFirst();
+        maxSliding[slidingIndex] = nums[maxIndexInWindow];
+        slidingIndex++;
+      }
+    }
+    return maxSliding;
   }
 
   private int search(char[] chars, int from, int to, char character) {

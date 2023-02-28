@@ -71,4 +71,24 @@ public interface SlidingWindowProblems {
    * @return the minimum window
    */
   String minWindow(String s, String t);
+
+  /**
+   * You are given an array of integers nums, there is a sliding window of size k which is moving
+   * from the very left of the array to the very right. You can only see the k numbers in the
+   * window. Each time the sliding window moves right by one position.
+   *
+   * <p>Return the max sliding window.
+   *
+   * <p>Example:
+   *
+   * <ul>
+   *   <li>Input: nums = [1,3,-1,-3,5,3,6,7], k = 3
+   *   <li>Output: [3,3,5,5,6,7]
+   * </ul>
+   *
+   * @param nums array of integers
+   * @param k size of sliding window
+   * @return max sliding window
+   */
+  int[] maxSlidingWindow(int[] nums, int k);
 }
