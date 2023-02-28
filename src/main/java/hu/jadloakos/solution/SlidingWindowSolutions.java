@@ -2,6 +2,11 @@ package hu.jadloakos.solution;
 
 import hu.jadloakos.problem.SlidingWindowProblems;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 /** Solutions for problems in {@link SlidingWindowProblems}. */
 public class SlidingWindowSolutions implements SlidingWindowProblems {
 
@@ -84,6 +89,32 @@ public class SlidingWindowSolutions implements SlidingWindowProblems {
 
   @Override
   public boolean checkInclusion(String s1, String s2) {
+    Map<Character, Long> charsForPermutation =
+        s1.chars()
+            .mapToObj(ch -> (char) ch)
+            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+    Map<Character, Long> charCounter = new HashMap<>();
+    var index = 0;
+    while (index < s2.length()) {
+      var charAtIndex = s2.charAt(index);
+      var permutationMax = charsForPermutation.get(charAtIndex);
+      if (permutationMax == null) {
+        charCounter.clear();
+        index++;
+        continue;
+      }
+
+      var newCount =
+          charCounter.compute(charAtIndex, (key, value) -> (value == null ? 0L : 1L) + 1L);
+      if (newCount > permutationMax) {
+        charCounter.clear();
+      } else if (newCount.equals(permutationMax) && charsForPermutation.equals(charCounter)) {
+        return true;
+      }
+      index++;
+    }
+
     return false;
   }
 
