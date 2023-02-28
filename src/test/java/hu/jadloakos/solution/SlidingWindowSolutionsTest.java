@@ -43,4 +43,11 @@ public class SlidingWindowSolutionsTest {
     assertTrue(slidingWindowSolutions.checkInclusion("ab", "eidbaooo"));
     assertFalse(slidingWindowSolutions.checkInclusion("ab", "eidboaoo"));
   }
+
+  @Test
+  void testMinWindow() {
+    assertEquals("BANC", slidingWindowSolutions.minWindow("ADOBECODEBANC", "ABC"));
+    assertEquals("a", slidingWindowSolutions.minWindow("a", "a"));
+    assertEquals("", slidingWindowSolutions.minWindow("a", "aa"));
+  }
 }

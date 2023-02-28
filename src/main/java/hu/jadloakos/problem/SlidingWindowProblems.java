@@ -58,4 +58,17 @@ public interface SlidingWindowProblems {
    * @return true if s1's permutations is the substring of s2, false otherwise
    */
   boolean checkInclusion(String s1, String s2);
+
+  /**
+   * Given two strings s and t of lengths m and n respectively, return the minimum window substring
+   * of s such that every character in t (including duplicates) is included in the window. If there
+   * is no such substring, return the empty string "".
+   *
+   * <p>The testcases will be generated such that the answer is unique.
+   *
+   * @param s string to find minimum window in
+   * @param t characters to find in s
+   * @return the minimum window
+   */
+  String minWindow(String s, String t);
 }

@@ -118,6 +118,11 @@ public class SlidingWindowSolutions implements SlidingWindowProblems {
     return false;
   }
 
+  @Override
+  public String minWindow(String s, String t) {
+    return null;
+  }
+
   private int search(char[] chars, int from, int to, char character) {
     for (int i = from; i < to; i++) {
       if (chars[i] == character) {
