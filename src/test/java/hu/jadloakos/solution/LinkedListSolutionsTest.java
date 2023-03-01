@@ -44,6 +44,21 @@ public class LinkedListSolutionsTest {
             buildListNode(new int[] {}), buildListNode(new int[] {0})));
   }
 
+  @Test
+  void testReorderList() {
+    // Arrange
+    var listNodeOne = buildListNode(new int[] {1, 2, 3, 4});
+    var listNodeTwo = buildListNode(new int[] {1, 2, 3, 4, 5});
+
+    // Act
+    linkedListSolutions.reorderList(listNodeOne);
+    linkedListSolutions.reorderList(listNodeTwo);
+
+    // Assert
+    assertListNode(new int[] {1, 4, 2, 3}, listNodeOne);
+    assertListNode(new int[] {1, 5, 2, 4, 3}, listNodeTwo);
+  }
+
   private void assertListNode(int[] values, LinkedListProblems.ListNode head) {
     var currentHead = head;
     assert currentHead != null;

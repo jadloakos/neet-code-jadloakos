@@ -2,6 +2,8 @@ package hu.jadloakos.solution;
 
 import hu.jadloakos.problem.LinkedListProblems;
 
+import java.util.Stack;
+
 /** Solutions for problems in {@link LinkedListProblems}. */
 public class LinkedListSolutions implements LinkedListProblems {
 
@@ -48,5 +50,27 @@ public class LinkedListSolutions implements LinkedListProblems {
     }
 
     return head;
+  }
+
+  @Override
+  public void reorderList(ListNode head) {
+    Stack<ListNode> stack = new Stack<>();
+
+    var node = head;
+    while (node != null) {
+      stack.push(node);
+      node = node.getNext();
+    }
+
+    node = head;
+    while (node != stack.peek()) {
+      var next = node.getNext();
+      var stackTop = stack.pop();
+      node.setNext(stackTop);
+      if (stackTop == next) {
+        break;
+      }
+      node = next;
+    }
   }
 }
