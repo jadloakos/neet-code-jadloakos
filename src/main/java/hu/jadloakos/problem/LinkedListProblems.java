@@ -37,6 +37,16 @@ public interface LinkedListProblems {
    */
   void reorderList(ListNode head);
 
+  /**
+   * Given the head of a linked list, remove the nth node from the end of the list and return its
+   * head.
+   *
+   * @param head head of a linked list
+   * @param n index of node counted from the end
+   * @return head of the linked list with node removed
+   */
+  ListNode removeNthFromEnd(ListNode head, int n);
+
   class ListNode {
 
     int val;

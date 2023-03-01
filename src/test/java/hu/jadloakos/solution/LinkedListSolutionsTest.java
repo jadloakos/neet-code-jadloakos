@@ -59,6 +59,18 @@ public class LinkedListSolutionsTest {
     assertListNode(new int[] {1, 5, 2, 4, 3}, listNodeTwo);
   }
 
+  @Test
+  void testRemoveNthFromEnd() {
+    // Arrange & Act & Assert
+    assertListNode(
+        new int[] {1, 2, 3, 5},
+        linkedListSolutions.removeNthFromEnd(buildListNode(new int[] {1, 2, 3, 4, 5}), 2));
+    assertListNode(
+        new int[] {}, linkedListSolutions.removeNthFromEnd(buildListNode(new int[] {1}), 1));
+    assertListNode(
+        new int[] {1}, linkedListSolutions.removeNthFromEnd(buildListNode(new int[] {1, 2}), 1));
+  }
+
   private void assertListNode(int[] values, LinkedListProblems.ListNode head) {
     var currentHead = head;
     assert currentHead != null;

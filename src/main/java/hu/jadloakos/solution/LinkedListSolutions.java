@@ -73,4 +73,9 @@ public class LinkedListSolutions implements LinkedListProblems {
       node = next;
     }
   }
+
+  @Override
+  public ListNode removeNthFromEnd(ListNode head, int n) {
+    return null;
+  }
 }
