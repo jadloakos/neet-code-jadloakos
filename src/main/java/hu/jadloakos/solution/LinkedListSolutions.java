@@ -2,6 +2,7 @@ package hu.jadloakos.solution;
 
 import hu.jadloakos.problem.LinkedListProblems;
 
+import java.util.Optional;
 import java.util.Stack;
 
 /** Solutions for problems in {@link LinkedListProblems}. */
@@ -106,6 +107,46 @@ public class LinkedListSolutions implements LinkedListProblems {
 
     previous.setNext(nodeToRemove.getNext());
     nodeToRemove.setNext(null);
+
+    return head;
+  }
+
+  @Override
+  public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    l1 = reverseList(l1);
+    l2 = reverseList(l2);
+
+    var leftOver = 0;
+    ListNode currentNode = null;
+    ListNode head = null;
+
+    while (l1 != null || l2 != null) {
+      var sum =
+          Optional.ofNullable(l1).map(ListNode::getVal).orElse(0)
+              + Optional.ofNullable(l2).map(ListNode::getVal).orElse(0)
+              + leftOver;
+      leftOver = sum / 10;
+
+      if (currentNode == null) {
+        currentNode = new ListNode(sum % 10);
+        head = currentNode;
+      } else {
+        var next = new ListNode(sum % 10);
+        currentNode.setNext(next);
+        currentNode = next;
+      }
+
+      if (l1 != null) {
+        l1 = l1.getNext();
+      }
+      if (l2 != null) {
+        l2 = l2.getNext();
+      }
+    }
+
+    if (leftOver != 0) {
+      currentNode.setNext(new ListNode(1));
+    }
 
     return head;
   }

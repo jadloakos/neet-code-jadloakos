@@ -71,6 +71,23 @@ public class LinkedListSolutionsTest {
         new int[] {1}, linkedListSolutions.removeNthFromEnd(buildListNode(new int[] {1, 2}), 1));
   }
 
+  @Test
+  void testAddTwoNumbers() {
+    // Arrange & Act & Assert
+    assertListNode(
+        new int[] {7, 0, 8},
+        linkedListSolutions.addTwoNumbers(
+            buildListNode(new int[] {2, 4, 3}), buildListNode(new int[] {5, 6, 4})));
+    assertListNode(
+        new int[] {0},
+        linkedListSolutions.addTwoNumbers(
+            buildListNode(new int[] {0}), buildListNode(new int[] {0})));
+    assertListNode(
+        new int[] {8, 9, 9, 9, 0, 0, 0, 1},
+        linkedListSolutions.addTwoNumbers(
+            buildListNode(new int[] {9, 9, 9, 9, 9, 9, 9}), buildListNode(new int[] {9, 9, 9, 9})));
+  }
+
   private void assertListNode(int[] values, LinkedListProblems.ListNode head) {
     int i = 0;
     while (head != null) {
