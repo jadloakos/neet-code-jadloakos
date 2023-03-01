@@ -77,7 +77,7 @@ public class LinkedListSolutionsTest {
 
     for (int i = 0; currentHead.getNext() != null; i++) {
       assertEquals(values[i], currentHead.getVal());
-      currentHead = head.getNext();
+      currentHead = currentHead.getNext();
       assert currentHead != null;
     }
   }

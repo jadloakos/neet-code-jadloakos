@@ -76,6 +76,30 @@ public class LinkedListSolutions implements LinkedListProblems {
 
   @Override
   public ListNode removeNthFromEnd(ListNode head, int n) {
-    return null;
+    ListNode previous = null;
+    ListNode nodeToRemove = null;
+    var currentNode = head;
+
+    for (int i = 1; currentNode != null; i++) {
+      if (i >= n) {
+        previous = nodeToRemove;
+        nodeToRemove = nodeToRemove == null ? head : nodeToRemove.getNext();
+      }
+
+      currentNode = currentNode.getNext();
+    }
+
+    if (previous == null) {
+      if (nodeToRemove != null) {
+        return nodeToRemove.getNext() != null ? nodeToRemove.getNext() : new ListNode();
+      }
+
+      return head;
+    }
+
+    previous.setNext(nodeToRemove.getNext());
+    nodeToRemove.setNext(null);
+
+    return head;
   }
 }
