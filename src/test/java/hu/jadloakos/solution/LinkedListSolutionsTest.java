@@ -4,7 +4,7 @@ import hu.jadloakos.problem.LinkedListProblems;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /** Test class for {@link LinkedListSolutions} */
 public class LinkedListSolutionsTest {
@@ -88,6 +88,23 @@ public class LinkedListSolutionsTest {
             buildListNode(new int[] {9, 9, 9, 9, 9, 9, 9}), buildListNode(new int[] {9, 9, 9, 9})));
   }
 
+  @Test
+  void testHasCycle() {
+    // Arrange
+    var noCycle = buildListNode(new int[] {1});
+
+    var cycleBig = buildListNode(new int[] {3, 2, 0, -4});
+    at(cycleBig, 3).setNext(at(cycleBig, 1));
+
+    var cycleSmall = buildListNode(new int[] {1, 2});
+    at(cycleSmall, 1).setNext(cycleSmall);
+
+    // Act & Assert
+    assertFalse(linkedListSolutions.hasCycle(noCycle));
+    assertTrue(linkedListSolutions.hasCycle(cycleBig));
+    assertTrue(linkedListSolutions.hasCycle(cycleSmall));
+  }
+
   private void assertListNode(int[] values, LinkedListProblems.ListNode head) {
     int i = 0;
     while (head != null) {
@@ -110,5 +127,14 @@ public class LinkedListSolutionsTest {
     }
 
     return head;
+  }
+
+  private LinkedListProblems.ListNode at(LinkedListProblems.ListNode head, int index) {
+    var currentNode = head;
+    for (int i = 0; i < index; i++) {
+      currentNode = currentNode.getNext();
+    }
+
+    return currentNode;
   }
 }

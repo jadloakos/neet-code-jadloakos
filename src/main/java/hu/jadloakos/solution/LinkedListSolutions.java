@@ -2,6 +2,8 @@ package hu.jadloakos.solution;
 
 import hu.jadloakos.problem.LinkedListProblems;
 
+import java.util.Collections;
+import java.util.IdentityHashMap;
 import java.util.Optional;
 import java.util.Stack;
 
@@ -149,5 +151,17 @@ public class LinkedListSolutions implements LinkedListProblems {
     }
 
     return head;
+  }
+
+  @Override
+  public boolean hasCycle(ListNode head) {
+    var identitySet = Collections.newSetFromMap(new IdentityHashMap<>());
+    while (head != null) {
+      if (!identitySet.add(head)) {
+        return true;
+      }
+      head = head.getNext();
+    }
+    return false;
   }
 }
