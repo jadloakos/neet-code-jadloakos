@@ -72,19 +72,19 @@ public class LinkedListSolutionsTest {
   }
 
   private void assertListNode(int[] values, LinkedListProblems.ListNode head) {
-    var currentHead = head;
-    assert currentHead != null;
-
-    for (int i = 0; currentHead.getNext() != null; i++) {
-      assertEquals(values[i], currentHead.getVal());
-      currentHead = currentHead.getNext();
-      assert currentHead != null;
+    int i = 0;
+    while (head != null) {
+      assertEquals(values[i], head.getVal());
+      head = head.getNext();
+      i++;
     }
+
+    assert i == values.length;
   }
 
   private LinkedListProblems.ListNode buildListNode(int[] values) {
     if (values == null || values.length == 0) {
-      return new LinkedListProblems.ListNode();
+      return null;
     }
 
     var head = new LinkedListProblems.ListNode(values[values.length - 1]);

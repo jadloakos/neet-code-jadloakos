@@ -10,19 +10,20 @@ public class LinkedListSolutions implements LinkedListProblems {
   @Override
   public ListNode reverseList(ListNode head) {
     ListNode previous = null;
-    ListNode current;
-    while (head.getNext() != null) {
+    ListNode current = null;
+    while (head != null) {
       current = head;
       head = head.getNext();
       current.setNext(previous);
       previous = current;
     }
 
-    return head;
+    return current;
   }
 
   @Override
   public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+    ListNode root = null;
     ListNode head = null;
     while (list1 != null || list2 != null) {
       ListNode smaller;
@@ -42,6 +43,7 @@ public class LinkedListSolutions implements LinkedListProblems {
 
       if (head == null) {
         head = smaller;
+        root = head;
         continue;
       }
 
@@ -49,7 +51,7 @@ public class LinkedListSolutions implements LinkedListProblems {
       head = smaller;
     }
 
-    return head;
+    return root;
   }
 
   @Override
@@ -68,10 +70,15 @@ public class LinkedListSolutions implements LinkedListProblems {
       var stackTop = stack.pop();
       node.setNext(stackTop);
       if (stackTop == next) {
-        break;
+        stackTop.setNext(null);
+        return;
       }
+
+      stackTop.setNext(next);
       node = next;
     }
+
+    node.setNext(null);
   }
 
   @Override
@@ -91,7 +98,7 @@ public class LinkedListSolutions implements LinkedListProblems {
 
     if (previous == null) {
       if (nodeToRemove != null) {
-        return nodeToRemove.getNext() != null ? nodeToRemove.getNext() : new ListNode();
+        return nodeToRemove.getNext() != null ? nodeToRemove.getNext() : null;
       }
 
       return head;
