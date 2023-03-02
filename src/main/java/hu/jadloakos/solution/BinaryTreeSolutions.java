@@ -20,4 +20,13 @@ public class BinaryTreeSolutions implements BinaryTreeProblems {
 
     return root;
   }
+
+  @Override
+  public int maxDepth(TreeNode root) {
+    if (root == null) {
+      return 0;
+    }
+
+    return Math.max(1 + maxDepth(root.getLeft()), 1 + maxDepth(root.getRight()));
+  }
 }

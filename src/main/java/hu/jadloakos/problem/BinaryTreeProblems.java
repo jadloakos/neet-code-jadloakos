@@ -11,6 +11,17 @@ public interface BinaryTreeProblems {
    */
   TreeNode invertTree(TreeNode root);
 
+  /**
+   * Given the root of a binary tree, return its maximum depth.
+   *
+   * <p>A binary tree's maximum depth is the number of nodes along the longest path from the root
+   * node down to the farthest leaf node.
+   *
+   * @param root root of a binary tree
+   * @return maximum depth
+   */
+  int maxDepth(TreeNode root);
+
   class TreeNode {
     int val;
 

@@ -4,6 +4,11 @@ import hu.jadloakos.problem.BinaryTreeProblems;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /** Test class for {@link BinaryTreeSolutions}. */
 public class BinaryTreeSolutionsTest {
 
@@ -18,13 +23,25 @@ public class BinaryTreeSolutionsTest {
   void testInvertTree() {
     // Arrange & Act & Assert
     assertTree(
-        new int[] {4, 7, 2, 9, 6, 3, 1},
-        binaryTreeSolutions.invertTree(buildTree(new int[] {4, 2, 7, 1, 3, 6, 9})));
-    assertTree(new int[] {2, 3, 1}, binaryTreeSolutions.invertTree(buildTree(new int[] {2, 1, 3})));
-    assertTree(new int[] {}, binaryTreeSolutions.invertTree(buildTree(new int[] {})));
+        new Integer[] {4, 7, 2, 9, 6, 3, 1},
+        binaryTreeSolutions.invertTree(buildTree(new Integer[] {4, 2, 7, 1, 3, 6, 9})));
+    assertTree(
+        new Integer[] {2, 3, 1},
+        binaryTreeSolutions.invertTree(buildTree(new Integer[] {2, 1, 3})));
+    assertTree(new Integer[] {}, binaryTreeSolutions.invertTree(buildTree(new Integer[] {})));
+    assertTree(
+        new Integer[] {3, 20, 9, 7, 15, null, null},
+        binaryTreeSolutions.invertTree(buildTree(new Integer[] {3, 9, 20, null, null, 15, 7})));
   }
 
-  private BinaryTreeProblems.TreeNode buildTree(int[] values) {
+  @Test
+  void testMaxDepth() {
+    assertEquals(
+        3, binaryTreeSolutions.maxDepth(buildTree(new Integer[] {3, 9, 20, null, null, 15, 7})));
+    assertEquals(2, binaryTreeSolutions.maxDepth(buildTree(new Integer[] {1, null, 2})));
+  }
+
+  private BinaryTreeProblems.TreeNode buildTree(Integer[] values) {
     if (values == null || values.length == 0) {
       return null;
     }
@@ -32,6 +49,10 @@ public class BinaryTreeSolutionsTest {
     var root = new BinaryTreeProblems.TreeNode(values[0]);
 
     for (int i = 1; i < values.length; i++) {
+      if (values[i] == null) {
+        continue;
+      }
+
       var lvl = 1.0;
       var childSum = Math.pow(2, lvl);
       while (i / childSum > 1) {
@@ -64,13 +85,13 @@ public class BinaryTreeSolutionsTest {
     return root;
   }
 
-  private void assertTree(int[] values, BinaryTreeProblems.TreeNode root) {
+  private void assertTree(Integer[] values, BinaryTreeProblems.TreeNode root) {
     if (values == null || values.length == 0) {
       assert root == null;
       return;
     }
 
-    assert values.length == getTreeSize(root);
+    assert Arrays.stream(values).filter(Objects::nonNull).count() == getTreeSize(root);
     assert root.getVal() == values[0];
 
     for (int i = 1; i < values.length; i++) {
@@ -90,16 +111,22 @@ public class BinaryTreeSolutionsTest {
           if (lvl != 1) {
             parent = parent.getRight();
           } else {
-            assert parent.getRight() != null;
-            assert parent.getRight().getVal() == values[i];
+            if (values[i] == null) {
+              assert parent.getRight() == null;
+            } else {
+              assert parent.getRight().getVal() == values[i];
+            }
           }
           indexInLvl -= bisector;
         } else {
           if (lvl != 1) {
             parent = parent.getLeft();
           } else {
-            assert parent.getLeft() != null;
-            assert parent.getLeft().getVal() == values[i];
+            if (values[i] == null) {
+              assert parent.getLeft() == null;
+            } else {
+              assert parent.getLeft().getVal() == values[i];
+            }
           }
         }
         lvl--;
