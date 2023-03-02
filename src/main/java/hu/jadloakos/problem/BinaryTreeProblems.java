@@ -46,6 +46,19 @@ public interface BinaryTreeProblems {
    */
   boolean isBalanced(TreeNode root);
 
+  /**
+   * Given the roots of two binary trees p and q, write a function to check if they are the same or
+   * not.
+   *
+   * <p>Two binary trees are considered the same if they are structurally identical, and the nodes
+   * have the same value.
+   *
+   * @param p first tree
+   * @param q second tree
+   * @return true if binary trees are identical, false otherwise
+   */
+  boolean isSameTree(TreeNode p, TreeNode q);
+
   class TreeNode {
     int val;
 

@@ -64,6 +64,20 @@ public class BinaryTreeSolutionsTest {
     assertTrue(binaryTreeSolutions.isBalanced(buildTree(new Integer[] {})));
   }
 
+  @Test
+  void testSameTree() {
+    // Arrange & Act & Assert
+    assertTrue(
+        binaryTreeSolutions.isSameTree(
+            buildTree(new Integer[] {1, 2, 3}), buildTree(new Integer[] {1, 2, 3})));
+    assertFalse(
+        binaryTreeSolutions.isSameTree(
+            buildTree(new Integer[] {1, 2}), buildTree(new Integer[] {1, null, 2})));
+    assertFalse(
+        binaryTreeSolutions.isSameTree(
+            buildTree(new Integer[] {1, 2, 1}), buildTree(new Integer[] {1, 1, 2})));
+  }
+
   private BinaryTreeProblems.TreeNode buildTree(Integer[] values) {
     if (values == null || values.length == 0) {
       return null;
