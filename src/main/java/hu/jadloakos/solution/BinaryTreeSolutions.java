@@ -41,4 +41,17 @@ public class BinaryTreeSolutions implements BinaryTreeProblems {
         Math.max(maxFromRoot, diameterOfBinaryTree(root.getLeft())),
         diameterOfBinaryTree(root.getRight()));
   }
+
+  @Override
+  public boolean isBalanced(TreeNode root) {
+    if (root == null) {
+      return true;
+    }
+
+    if (Math.abs(maxDepth(root.getLeft()) - maxDepth(root.getRight())) > 1) {
+      return false;
+    }
+
+    return isBalanced(root.getLeft()) && isBalanced(root.getRight());
+  }
 }

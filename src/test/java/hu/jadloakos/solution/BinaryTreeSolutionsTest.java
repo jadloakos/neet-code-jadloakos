@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /** Test class for {@link BinaryTreeSolutions}. */
 public class BinaryTreeSolutionsTest {
@@ -52,6 +52,16 @@ public class BinaryTreeSolutionsTest {
         binaryTreeSolutions.diameterOfBinaryTree(
             buildTree(
                 new Integer[] {1, 2, null, 3, 4, null, null, null, null, null, 1, null, null})));
+  }
+
+  @Test
+  void testIsBalanced() {
+    // Arrange & Act & Assert
+    assertTrue(
+        binaryTreeSolutions.isBalanced(buildTree(new Integer[] {3, 9, 20, null, null, 15, 7})));
+    assertFalse(
+        binaryTreeSolutions.isBalanced(buildTree(new Integer[] {1, 2, 2, 3, 3, null, null, 4, 4})));
+    assertTrue(binaryTreeSolutions.isBalanced(buildTree(new Integer[] {})));
   }
 
   private BinaryTreeProblems.TreeNode buildTree(Integer[] values) {

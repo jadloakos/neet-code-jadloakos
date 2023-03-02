@@ -35,6 +35,17 @@ public interface BinaryTreeProblems {
    */
   int diameterOfBinaryTree(TreeNode root);
 
+  /**
+   * Given a binary tree, determine if it is height-balanced.
+   *
+   * <p>A height-balanced binary tree is a binary tree in which the depth of the two subtrees of
+   * every node never differs by more than one.
+   *
+   * @param root root of a binary tree
+   * @return true if tree is height-balanced, false otherwise
+   */
+  boolean isBalanced(TreeNode root);
+
   class TreeNode {
     int val;
 
