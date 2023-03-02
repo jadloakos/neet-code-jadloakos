@@ -29,4 +29,16 @@ public class BinaryTreeSolutions implements BinaryTreeProblems {
 
     return Math.max(1 + maxDepth(root.getLeft()), 1 + maxDepth(root.getRight()));
   }
+
+  @Override
+  public int diameterOfBinaryTree(TreeNode root) {
+    if (root == null) {
+      return 0;
+    }
+
+    var maxFromRoot = maxDepth(root.getLeft()) + maxDepth(root.getRight());
+    return Math.max(
+        Math.max(maxFromRoot, diameterOfBinaryTree(root.getLeft())),
+        diameterOfBinaryTree(root.getRight()));
+  }
 }

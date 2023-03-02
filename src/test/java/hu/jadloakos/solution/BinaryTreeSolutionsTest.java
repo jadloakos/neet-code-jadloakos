@@ -41,6 +41,19 @@ public class BinaryTreeSolutionsTest {
     assertEquals(2, binaryTreeSolutions.maxDepth(buildTree(new Integer[] {1, null, 2})));
   }
 
+  @Test
+  void testDiameterOfBinaryTree() {
+    // Arrange & Act & Assert
+    assertEquals(
+        3, binaryTreeSolutions.diameterOfBinaryTree(buildTree(new Integer[] {1, 2, 3, 4, 5})));
+    assertEquals(1, binaryTreeSolutions.diameterOfBinaryTree(buildTree(new Integer[] {1, 2})));
+    assertEquals(
+        3,
+        binaryTreeSolutions.diameterOfBinaryTree(
+            buildTree(
+                new Integer[] {1, 2, null, 3, 4, null, null, null, null, null, 1, null, null})));
+  }
+
   private BinaryTreeProblems.TreeNode buildTree(Integer[] values) {
     if (values == null || values.length == 0) {
       return null;
