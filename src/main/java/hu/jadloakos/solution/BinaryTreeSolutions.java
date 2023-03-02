@@ -67,4 +67,15 @@ public class BinaryTreeSolutions implements BinaryTreeProblems {
 
     return isSameTree(p.getLeft(), q.getLeft()) && isSameTree(p.getRight(), q.getRight());
   }
+
+  @Override
+  public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+    if (root == null) {
+      return false;
+    }
+
+    return isSameTree(root, subRoot)
+        || isSubtree(root.getLeft(), subRoot)
+        || isSubtree(root.getRight(), subRoot);
+  }
 }

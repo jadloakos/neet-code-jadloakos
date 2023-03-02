@@ -78,6 +78,18 @@ public class BinaryTreeSolutionsTest {
             buildTree(new Integer[] {1, 2, 1}), buildTree(new Integer[] {1, 1, 2})));
   }
 
+  @Test
+  void testIsSubTree() {
+    // Arrange & Act & Assert
+    assertTrue(
+        binaryTreeSolutions.isSubtree(
+            buildTree(new Integer[] {3, 4, 5, 1, 2}), buildTree(new Integer[] {4, 1, 2})));
+    assertFalse(
+        binaryTreeSolutions.isSubtree(
+            buildTree(new Integer[] {3, 4, 5, 1, 2, null, null, null, null, 0}),
+            buildTree(new Integer[] {4, 1, 2})));
+  }
+
   private BinaryTreeProblems.TreeNode buildTree(Integer[] values) {
     if (values == null || values.length == 0) {
       return null;

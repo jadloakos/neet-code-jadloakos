@@ -59,6 +59,19 @@ public interface BinaryTreeProblems {
    */
   boolean isSameTree(TreeNode p, TreeNode q);
 
+  /**
+   * Given the roots of two binary trees root and subRoot, return true if there is a subtree of root
+   * with the same structure and node values of subRoot and false otherwise.
+   *
+   * <p>A subtree of a binary tree is a tree that consists of a node in tree and all of this node's
+   * descendants. The tree could also be considered as a subtree of itself.
+   *
+   * @param root root of a binary tree
+   * @param subRoot root of a binary
+   * @return true if first tree contains second, false otherwise
+   */
+  boolean isSubtree(TreeNode root, TreeNode subRoot);
+
   class TreeNode {
     int val;
 
