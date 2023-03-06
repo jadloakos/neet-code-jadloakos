@@ -78,4 +78,19 @@ public class BinaryTreeSolutions implements BinaryTreeProblems {
         || isSubtree(root.getLeft(), subRoot)
         || isSubtree(root.getRight(), subRoot);
   }
+
+  @Override
+  public Integer lowestCommonAncestor(TreeNode root, Integer p, Integer q) {
+    if (root == null) {
+      return null;
+    }
+
+    var value = root.getVal();
+    if (value < p && value > q || value > p && value < q || value == p || value == q) {
+      return value;
+    }
+
+    return Math.min(
+        value, lowestCommonAncestor(p < value ? root.getLeft() : root.getRight(), p, q));
+  }
 }

@@ -90,6 +90,21 @@ public class BinaryTreeSolutionsTest {
             buildTree(new Integer[] {4, 1, 2})));
   }
 
+  @Test
+  void testLowestCommonAncestor() {
+    // Arrange & Act & Assert
+    assertEquals(
+        6,
+        binaryTreeSolutions.lowestCommonAncestor(
+            buildTree(new Integer[] {6, 2, 8, 0, 4, 7, 9, null, null, 3, 5}), 2, 8));
+    assertEquals(
+        2,
+        binaryTreeSolutions.lowestCommonAncestor(
+            buildTree(new Integer[] {6, 2, 8, 0, 4, 7, 9, null, null, 3, 5}), 2, 4));
+    assertEquals(
+        2, binaryTreeSolutions.lowestCommonAncestor(buildTree(new Integer[] {2, 1}), 2, 1));
+  }
+
   private BinaryTreeProblems.TreeNode buildTree(Integer[] values) {
     if (values == null || values.length == 0) {
       return null;
