@@ -1,5 +1,7 @@
 package hu.jadloakos.problem;
 
+import java.util.List;
+
 /** Interface for binary tree problems. */
 public interface BinaryTreeProblems {
 
@@ -86,6 +88,15 @@ public interface BinaryTreeProblems {
    * @return the lowst common ancestor
    */
   Integer lowestCommonAncestor(TreeNode root, Integer p, Integer q);
+
+  /**
+   * Given the root of a binary tree, return the level order traversal of its node's values. (i.e.,
+   * from left to right, level by level).
+   *
+   * @param root root of a binary tree
+   * @return the level order traversal of its node's values
+   */
+  List<List<Integer>> levelOrder(TreeNode root);
 
   class TreeNode {
     int val;

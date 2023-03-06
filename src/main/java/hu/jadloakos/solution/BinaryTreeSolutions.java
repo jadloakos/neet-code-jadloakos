@@ -2,6 +2,9 @@ package hu.jadloakos.solution;
 
 import hu.jadloakos.problem.BinaryTreeProblems;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /** Solutions for problems in {@link BinaryTreeProblems}. */
 public class BinaryTreeSolutions implements BinaryTreeProblems {
 
@@ -92,5 +95,26 @@ public class BinaryTreeSolutions implements BinaryTreeProblems {
 
     return Math.min(
         value, lowestCommonAncestor(p < value ? root.getLeft() : root.getRight(), p, q));
+  }
+
+  @Override
+  public List<List<Integer>> levelOrder(TreeNode root) {
+    List<List<Integer>> levelOrder = new ArrayList<>();
+    levelOrder(root, 0, levelOrder);
+    return levelOrder;
+  }
+
+  public void levelOrder(TreeNode root, int lvl, List<List<Integer>> levelOrder) {
+    if (root == null) {
+      return;
+    }
+
+    if (levelOrder.size() < lvl + 1) {
+      levelOrder.add(new ArrayList<>());
+    }
+    levelOrder.get(lvl).add(root.getVal());
+
+    levelOrder(root.getLeft(), lvl + 1, levelOrder);
+    levelOrder(root.getRight(), lvl + 1, levelOrder);
   }
 }

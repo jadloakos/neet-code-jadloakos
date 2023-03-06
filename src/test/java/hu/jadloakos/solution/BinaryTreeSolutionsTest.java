@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Objects;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.empty;
 import static org.junit.jupiter.api.Assertions.*;
 
 /** Test class for {@link BinaryTreeSolutions}. */
@@ -103,6 +106,17 @@ public class BinaryTreeSolutionsTest {
             buildTree(new Integer[] {6, 2, 8, 0, 4, 7, 9, null, null, 3, 5}), 2, 4));
     assertEquals(
         2, binaryTreeSolutions.lowestCommonAncestor(buildTree(new Integer[] {2, 1}), 2, 1));
+  }
+
+  @SuppressWarnings("unchecked")
+  @Test
+  void testLevelOrder() {
+    // Arrange & Act & Assert
+    assertThat(
+        binaryTreeSolutions.levelOrder(buildTree(new Integer[] {3, 9, 20, null, null, 15, 7})),
+        contains(contains(3), contains(9, 20), contains(15, 7)));
+    assertThat(binaryTreeSolutions.levelOrder(buildTree(new Integer[] {1})), contains(contains(1)));
+    assertThat(binaryTreeSolutions.levelOrder(buildTree(new Integer[] {})), empty());
   }
 
   private BinaryTreeProblems.TreeNode buildTree(Integer[] values) {
