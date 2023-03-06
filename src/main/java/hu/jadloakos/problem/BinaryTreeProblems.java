@@ -98,6 +98,15 @@ public interface BinaryTreeProblems {
    */
   List<List<Integer>> levelOrder(TreeNode root);
 
+  /**
+   * Given the root of a binary tree, imagine yourself standing on the right side of it, return the
+   * values of the nodes you can see ordered from top to bottom.
+   *
+   * @param root root of a binary tree
+   * @return list of nodes you can see from right from top to bottom
+   */
+  List<Integer> rightSideView(TreeNode root);
+
   class TreeNode {
     int val;
 

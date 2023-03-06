@@ -104,7 +104,14 @@ public class BinaryTreeSolutions implements BinaryTreeProblems {
     return levelOrder;
   }
 
-  public void levelOrder(TreeNode root, int lvl, List<List<Integer>> levelOrder) {
+  @Override
+  public List<Integer> rightSideView(TreeNode root) {
+    List<Integer> rightSideView = new ArrayList<>();
+    rightSideView(root, 0, rightSideView);
+    return rightSideView;
+  }
+
+  private void levelOrder(TreeNode root, int lvl, List<List<Integer>> levelOrder) {
     if (root == null) {
       return;
     }
@@ -116,5 +123,18 @@ public class BinaryTreeSolutions implements BinaryTreeProblems {
 
     levelOrder(root.getLeft(), lvl + 1, levelOrder);
     levelOrder(root.getRight(), lvl + 1, levelOrder);
+  }
+
+  private void rightSideView(TreeNode root, int lvl, List<Integer> rightSideView) {
+    if (root == null) {
+      return;
+    }
+
+    if (rightSideView.size() <= lvl) {
+      rightSideView.add(root.getVal());
+    }
+
+    rightSideView(root.getRight(), lvl + 1, rightSideView);
+    rightSideView(root.getLeft(), lvl + 1, rightSideView);
   }
 }

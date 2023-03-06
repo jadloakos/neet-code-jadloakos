@@ -119,6 +119,18 @@ public class BinaryTreeSolutionsTest {
     assertThat(binaryTreeSolutions.levelOrder(buildTree(new Integer[] {})), empty());
   }
 
+  @Test
+  void testRightSideView() {
+    // Arrange & Act & Assert
+    assertThat(
+        binaryTreeSolutions.rightSideView(
+            buildTree(new Integer[] {1, 2, 3, null, 5, null, 4, null, null, 7})),
+        contains(1, 3, 4, 7));
+    assertThat(
+        binaryTreeSolutions.rightSideView(buildTree(new Integer[] {1, null, 3})), contains(1, 3));
+    assertThat(binaryTreeSolutions.rightSideView(buildTree(new Integer[] {})), empty());
+  }
+
   private BinaryTreeProblems.TreeNode buildTree(Integer[] values) {
     if (values == null || values.length == 0) {
       return null;
