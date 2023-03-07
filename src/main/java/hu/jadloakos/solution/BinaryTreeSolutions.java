@@ -111,6 +111,11 @@ public class BinaryTreeSolutions implements BinaryTreeProblems {
     return rightSideView;
   }
 
+  @Override
+  public int goodNodes(TreeNode root) {
+    return goodNodes(root, null);
+  }
+
   private void levelOrder(TreeNode root, int lvl, List<List<Integer>> levelOrder) {
     if (root == null) {
       return;
@@ -136,5 +141,23 @@ public class BinaryTreeSolutions implements BinaryTreeProblems {
 
     rightSideView(root.getRight(), lvl + 1, rightSideView);
     rightSideView(root.getLeft(), lvl + 1, rightSideView);
+  }
+
+  private int goodNodes(TreeNode node, Integer max) {
+    if (node == null) {
+      return 0;
+    }
+
+    var value = node.getVal();
+    var goodNodeCount = 0;
+    if (max == null || value >= max) {
+      goodNodeCount++;
+    }
+
+    var newMax = max == null ? value : Math.max(max, value);
+    goodNodeCount += goodNodes(node.getLeft(), newMax);
+    goodNodeCount += goodNodes(node.getRight(), newMax);
+
+    return goodNodeCount;
   }
 }

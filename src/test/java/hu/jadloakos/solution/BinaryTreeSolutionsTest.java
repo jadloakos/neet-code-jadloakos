@@ -131,6 +131,15 @@ public class BinaryTreeSolutionsTest {
     assertThat(binaryTreeSolutions.rightSideView(buildTree(new Integer[] {})), empty());
   }
 
+  @Test
+  void testGoodNodes() {
+    // Arrange & Act & Assert
+    assertEquals(
+        4, binaryTreeSolutions.goodNodes(buildTree(new Integer[] {3, 1, 4, 3, null, 1, 5})));
+    assertEquals(3, binaryTreeSolutions.goodNodes(buildTree(new Integer[] {3, 3, null, 4, 2})));
+    assertEquals(1, binaryTreeSolutions.goodNodes(buildTree(new Integer[] {1})));
+  }
+
   private BinaryTreeProblems.TreeNode buildTree(Integer[] values) {
     if (values == null || values.length == 0) {
       return null;

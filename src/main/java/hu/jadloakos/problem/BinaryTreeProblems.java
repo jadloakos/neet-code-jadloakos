@@ -107,6 +107,17 @@ public interface BinaryTreeProblems {
    */
   List<Integer> rightSideView(TreeNode root);
 
+  /**
+   * Given a binary tree root, a node X in the tree is named good if in the path from root to X
+   * there are no nodes with a value greater than X.
+   *
+   * <p>Return the number of good nodes in the binary tree.
+   *
+   * @param root root of a binary tree
+   * @return number of good nodes
+   */
+  int goodNodes(TreeNode root);
+
   class TreeNode {
     int val;
 
